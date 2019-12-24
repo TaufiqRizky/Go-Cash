@@ -34,10 +34,10 @@ public class ReportFragment extends Fragment {
 
         ArrayList<BarEntry> barEntries = new ArrayList<>();
 
-        barEntries.add(new BarEntry(1,40f));
-        barEntries.add(new BarEntry(2,44f));
-        barEntries.add(new BarEntry(3,30f));
-        barEntries.add(new BarEntry(4,46f));
+        barEntries.add(new BarEntry(1,200000));
+        barEntries.add(new BarEntry(2,400000));
+        barEntries.add(new BarEntry(3,250000));
+        barEntries.add(new BarEntry(4,1000000));
 
         BarDataSet barDataSet = new BarDataSet(barEntries,"Pemasukan");
         barDataSet.setColor(Color.rgb(46,204,113));
