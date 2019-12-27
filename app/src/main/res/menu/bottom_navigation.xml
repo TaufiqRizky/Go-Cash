@@ -4,7 +4,7 @@
     <item
         android:id="@+id/nav_profile"
         android:icon="@drawable/ic_user"
-        android:title="Home"/>
+        android:title="Profile"/>
 
     <item
         android:id="@+id/nav_pemasukan"
