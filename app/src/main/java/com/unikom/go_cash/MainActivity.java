@@ -13,13 +13,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.github.mikephil.charting.charts.BarChart;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
     //private DrawerLayout drawer;
-    BarChart barChart;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
