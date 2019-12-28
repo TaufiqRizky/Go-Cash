@@ -116,6 +116,7 @@
         android:layout_height="54dp"
         android:layout_marginTop="8dp"
         android:text="Liat Tabel Pemasukan "
+        android:onClick="pindah"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
