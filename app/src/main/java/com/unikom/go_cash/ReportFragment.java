@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,12 +32,28 @@ public class ReportFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_report,container,false);
 
+        Spinner TahunSpin= view.findViewById(R.id.SpinTahun);
+        ArrayAdapter<CharSequence> adapterThn = ArrayAdapter.createFromResource(getActivity() ,R.array.Tahun, android.R.layout.simple_spinner_item);
+        adapterThn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        TahunSpin.setAdapter(adapterThn);
+
+        Spinner BulanSpin= view.findViewById(R.id.SpinBulan);
+        ArrayAdapter<CharSequence> adapterBln = ArrayAdapter.createFromResource(getActivity() ,R.array.Bulan, android.R.layout.simple_spinner_item);
+        adapterBln.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        BulanSpin.setAdapter(adapterBln);
+
+
+
         barChart= (BarChart) view.findViewById(R.id.barchart);
         barChart.setDrawBarShadow(false);
         barChart.setDrawValueAboveBar(true);
         barChart.setMaxVisibleValueCount(50);
         barChart.setPinchZoom(true);
         barChart.setDrawGridBackground(true);
+        barChart.setDrawValueAboveBar(true);
+        barChart.animateY(1500);
+        barChart.setDrawGridBackground(false);
+
 
         ArrayList<BarEntry> barEntries = new ArrayList<>();
 
