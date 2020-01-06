@@ -53,6 +53,7 @@
         android:layout_height="39dp"
         android:layout_marginTop="120dp"
         android:background="#4834d4"
+        android:onClick="Home"
         android:text="Sign In"
         android:textColor="#fff"
         app:layout_constraintEnd_toEndOf="parent"
