@@ -2,6 +2,12 @@
     <string name="app_name">Go-Cash</string>
     <string name="navigation_drawer_open">Open Navigation Drawer</string>
     <string name="navigation_drawer_close">Close Navigation Drawer</string>
+    <string name="username">username</string>
+    <string name="txt_pemasukan">Pemasukan</string>
+    <string name="txt_pengeluaran">Pengeluaran</string>
+    <string name="email">email</string>
+    <string name="btn_edit">Edit</string>
+    <string name="btn_logout">Log out</string>
     <string-array name="Tahun">
         <item>-Thn-</item>
         <item>2017</item>
