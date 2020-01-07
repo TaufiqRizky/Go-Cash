@@ -8,8 +8,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-
 import java.util.ArrayList;
 
 public class ListPengeluaranAdapter extends RecyclerView.Adapter<ListPengeluaranAdapter.ListViewHolder>{
@@ -33,7 +31,7 @@ public class ListPengeluaranAdapter extends RecyclerView.Adapter<ListPengeluaran
         PengeluaranModel pengeluaran = listPengeluaran.get(position);
 
         holder.tvTanggal.setText(pengeluaran.getTanggal());
-        holder.tvJumlah.setText(pengeluaran.getJumlah());
+        holder.tvJumlah.setText(String.valueOf(pengeluaran.getJumlah()));
         holder.tvDetail.setText(pengeluaran.getDetail());
 
     }

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -19,8 +20,9 @@ public class PengeluaranFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.item_row_pengeluaran,container, false);
-        rvPengeluaran = rvPengeluaran.findViewById(R.id.rv_pengeluaran);
+
+        View view = inflater.inflate(R.layout.fragment_pengeluaran,container, false);
+        rvPengeluaran = view.findViewById(R.id.rv_pengeluaran);
         rvPengeluaran.setHasFixedSize(true);
 
         list.addAll(PengeluaranData.getListData());
@@ -41,6 +43,7 @@ public class PengeluaranFragment extends Fragment {
 //
 //
     private void showRecyclerList() {
+        rvPengeluaran.setLayoutManager(new LinearLayoutManager(getActivity()));
         ListPengeluaranAdapter lpd = new ListPengeluaranAdapter(list);
         rvPengeluaran.setAdapter(lpd);
     }
