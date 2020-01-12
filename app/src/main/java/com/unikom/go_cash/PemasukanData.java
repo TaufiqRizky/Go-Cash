@@ -1,29 +1,21 @@
 package com.unikom.go_cash;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 
-public class PemasukanFragment extends Fragment {
+public class PemasukanData extends Fragment {
     private static final String TAG = "RecyclerViewFragment";
     private static final String KEY_LAYOUT_MANAGER = "layoutManager";
     private static final int SPAN_COUNT = 2;
@@ -43,8 +35,8 @@ public class PemasukanFragment extends Fragment {
     protected int[] mDataset3;
 
     int [] icon = {R.drawable.ic_user, R.drawable.ic_user,R.drawable.ic_user};
-    String [] judul = {"","Kampus Koding","Kampus Koding"};
-    String [] deskripsi = {"belajar programming","belajar programming","belajar programming"};
+    String [] judul = {"10-1-2017","15-12-2019","3-01-2020"};
+    String [] deskripsi = {"NAMA: REZA PARATAMA","belajar programming","belajar programming"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,7 +47,7 @@ public class PemasukanFragment extends Fragment {
         initDataset();
     }
 
-
+   
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_listpemasukan_adapter, container, false);
@@ -64,23 +56,12 @@ public class PemasukanFragment extends Fragment {
         //BEGIN_INCLUDE(initializeRecyclerView)
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rcpemasukan);
 
+        // LinearLayoutManager is used here, this will layout the elements in a similar fashion
+        // to the way ListView would layout elements. The RecyclerView.LayoutManager defines how
+        // elements are laid out.
         mLayoutManager = new LinearLayoutManager(getActivity());
 
         mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
-
-        Button btnapawelah = rootView.findViewById(R.id.btnTambah);
-
-        btnapawelah.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction fragmentTransaction = getActivity()
-                        .getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, new coba());
-                fragmentTransaction.commit();
-                //FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new coba()).commit();
-            }
-        });
 
         if (savedInstanceState != null) {
             // Restore saved layout manager type.
@@ -97,7 +78,11 @@ public class PemasukanFragment extends Fragment {
         return rootView;
     }
 
-
+    /**
+     * Set RecyclerView's LayoutManager to the one given.
+     *
+     * @param layoutManagerType Type of layout manager to switch to.
+     */
     public void setRecyclerViewLayoutManager(LayoutManagerType layoutManagerType) {
         int scrollPosition = 0;
 
@@ -144,44 +129,6 @@ public class PemasukanFragment extends Fragment {
             mDataset2[i] = deskripsi[i];
             mDataset3[i] = icon[i];
         }
-
-//         class coba extends Fragment {
-//          public  coba(){
-//            //constructor
-//        }
-//
-//        @Nullable
-//        @Override
-//        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//            View view = inflater.inflate(R.layout.activity_listpemasukan_adapter, container, false);
-//
-//
-//            final Button TambahPemasukan = (Button)view.findViewById(R.id.btnTambah);
-//            TambahPemasukan.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-////                    Intent pindah = new Intent(getActivity(), com.unikom.go_cash.coba.class);
-////                    startActivity(pindah);
-////                    Toast.makeText(this,"test",Toast.LENGTH_SHORT).show();
-//
-//
-//
-//                }
-//                //}
-//            });
-//            return view;
-//        }
-//
-//
-//    }
-
-
-}
-    public void pindah(View view){
-        //Toast.makeText(getActivity(),"test", Toast.LENGTH_SHORT).show();
-//        Intent pindah = new Intent(getActivity(), ListpemasukanAdapter.class);
-//        startActivity(pindah);
-      //  getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new coba()).commit();
     }
 }
 

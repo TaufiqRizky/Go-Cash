@@ -82,6 +82,7 @@
                         android:paddingTop="10dp"
                         android:textColor="@color/endOrange"/>
                 </LinearLayout>
+
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
