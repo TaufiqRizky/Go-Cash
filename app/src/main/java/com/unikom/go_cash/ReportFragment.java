@@ -1,12 +1,15 @@
 package com.unikom.go_cash;
 
+import android.app.Dialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,8 +28,12 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
+import static com.unikom.go_cash.R.layout.activity__graph;
+
 public class ReportFragment extends Fragment {
     BarChart barChart;
+    Dialog grafikDialog;
+    private Button btnGrafik;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
@@ -42,42 +49,22 @@ public class ReportFragment extends Fragment {
         adapterBln.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         BulanSpin.setAdapter(adapterBln);
 
+        grafikDialog = new Dialog(getActivity());
+        btnGrafik = (Button) view.findViewById(R.id.btnGrafik);
+        btnGrafik.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowGrafik(v);
+            }
+        });
 
 
-        barChart= (BarChart) view.findViewById(R.id.barchart);
-        barChart.setDrawBarShadow(false);
-        barChart.setDrawValueAboveBar(true);
-        barChart.setMaxVisibleValueCount(50);
-        barChart.setPinchZoom(true);
-        barChart.setDrawGridBackground(true);
-        barChart.setDrawValueAboveBar(true);
-        barChart.animateY(1500);
-        barChart.setDrawGridBackground(false);
 
 
-        ArrayList<BarEntry> barEntries = new ArrayList<>();
-
-        barEntries.add(new BarEntry(1,200000));
-
-
-        ArrayList<BarEntry> barEntries2 = new ArrayList<>();
-
-        barEntries2.add(new BarEntry(2,340000));
-
-
-        BarDataSet barDataSet = new BarDataSet(barEntries,"Pemasukan");
-        barDataSet.setColor(Color.rgb(46,204,113));
-
-        BarDataSet barDataSet2 = new BarDataSet(barEntries2,"Pengeluaran");
-        barDataSet2.setColor(Color.rgb(235, 77, 75));
-
-        BarData data = new BarData(barDataSet,barDataSet2);
 
 //        float groupspace = 0.1f;
 //        float barspace=0.02f;
 //        float barWidth= 0.43f;
-
-        barChart.setData(data);
 //        data.setBarWidth(barWidth);
 //        barChart.groupBars(1, groupspace, barspace);
 
@@ -106,6 +93,23 @@ public class ReportFragment extends Fragment {
 //            return mValues[(int)value];
 //        }
 //    }
+
+    public void ShowGrafik(View v){
+        TextView txtClose;
+        grafikDialog.setContentView(activity__graph);
+        txtClose = (TextView) grafikDialog.findViewById(R.id.txtClose);
+        txtClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                grafikDialog.dismiss();
+            }
+        });
+        BarChart barChart= grafikDialog.findViewById(R.id.barchart);
+        Activity_Graph a = new Activity_Graph();
+        a.buatGrafik(barChart);
+
+        grafikDialog.show();
+    }
 
 
 }

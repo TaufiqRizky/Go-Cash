@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ListpemasukanAdapter"></activity>
-        <!-- <activity android:name=".SigninActivity"></activity> -->
+        <activity android:name=".Activity_Graph"></activity>
+        <activity android:name=".ListpemasukanAdapter" /> <!-- <activity android:name=".SigninActivity"></activity> -->
         <activity android:name=".PemasukanModel" />
         <activity android:name=".MainActivity">
 
