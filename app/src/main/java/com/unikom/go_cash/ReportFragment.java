@@ -1,7 +1,6 @@
 package com.unikom.go_cash;
 
 import android.app.Dialog;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,23 +11,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.components.AxisBase;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.formatter.IAxisValueFormatter;
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
-import com.github.mikephil.charting.formatter.ValueFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.unikom.go_cash.Adapter.CardAdapter;
-import com.unikom.go_cash.Model.Planet;
+import com.unikom.go_cash.Model.Keuangan;
 
 import java.util.ArrayList;
 
@@ -40,7 +29,7 @@ public class ReportFragment extends Fragment {
     private Button btnGrafik;
     private RecyclerView recyclerView;
     private CardAdapter adapter;
-    private ArrayList<Planet> planetArrayList;
+    private ArrayList<Keuangan> keuanganArrayList;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
@@ -95,32 +84,29 @@ public class ReportFragment extends Fragment {
     private void initView(View v) {
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        planetArrayList = new ArrayList<>();
-        adapter = new CardAdapter(this, planetArrayList);
+        keuanganArrayList = new ArrayList<>();
+        adapter = new CardAdapter(this, keuanganArrayList);
         recyclerView.setAdapter(adapter);
         // recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         createListData();
     }
 
     private void createListData() {
-        Planet planet = new Planet("Earth", 150, 10, 12750);
-        planetArrayList.add(planet);
-        planet = new Planet("Jupiter", 778, 26, 143000);
-        planetArrayList.add(planet);
-        planet = new Planet("Mars", 228, 4, 6800);
-        planetArrayList.add(planet);
-        planet = new Planet("Pluto", 5900, 1, 2320);
-        planetArrayList.add(planet);
-        planet = new Planet("Venus", 108, 9, 12750);
-        planetArrayList.add(planet);
-        planet = new Planet("Saturn", 1429, 11, 120000);
-        planetArrayList.add(planet);
-        planet = new Planet("Mercury", 58, 4, 4900);
-        planetArrayList.add(planet);
-        planet = new Planet("Neptune", 4500, 12, 50500);
-        planetArrayList.add(planet);
-        planet = new Planet("Uranus", 2870, 9, 52400);
-        planetArrayList.add(planet);
+        Keuangan keuangan = new Keuangan("19/08/2019", "Maemunah", "Uang Kas Mingguan", 2000);
+        keuanganArrayList.add(keuangan);
+        keuangan = new Keuangan("19/08/2019", "Epul", "Uang Kas Mingguan", 2000);
+        keuanganArrayList.add(keuangan);
+        keuangan = new Keuangan("19/08/2020", "Udin", "Uang Kas Mingguan", 3000);
+        keuanganArrayList.add(keuangan);
+        keuangan = new Keuangan("19/02/2019", "Siti", "Uang Kas Mingguan", 5000);
+        keuanganArrayList.add(keuangan);
+        keuangan = new Keuangan("14/07/2019", "Jubaedah", "Uang Kas Mingguan", 2500);
+        keuanganArrayList.add(keuangan);
+        keuangan = new Keuangan("9/02/2017", "Alip", "Uang Kas Mingguan", 500);
+        keuanganArrayList.add(keuangan);
+        keuangan = new Keuangan("1/08/2018", "Maemunah", "Uang Kas Mingguan", 2000);
+        keuanganArrayList.add(keuangan);
+
         adapter.notifyDataSetChanged();
     }
 

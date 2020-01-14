@@ -17,26 +17,26 @@
         android:padding="12dp">
 
         <TextView
-            android:id="@+id/txtName"
+            android:id="@+id/txtNama"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="1dp"
             android:textColor="#fff" />
 
         <TextView
-            android:id="@+id/txtDistance"
+            android:id="@+id/txtTanggal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="1dp" />
 
         <TextView
-            android:id="@+id/txtGravity"
+            android:id="@+id/txtUang"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="1dp" />
 
         <TextView
-            android:id="@+id/txtDiameter"
+            android:id="@+id/txtDeskripsi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="1dp" />

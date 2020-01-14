@@ -8,22 +8,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.unikom.go_cash.Model.Planet;
+import com.unikom.go_cash.Model.Keuangan;
 import com.unikom.go_cash.PemasukanFragment;
 import com.unikom.go_cash.R;
-import com.unikom.go_cash.ReportFragment;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
 public class PemasukanAdapter extends RecyclerView.Adapter<PemasukanAdapter.PlanetHolder> {
 
     private PemasukanFragment context;
-    private ArrayList<Planet> planets;
+    private ArrayList<Keuangan> keuangans;
 
-    public PemasukanAdapter(PemasukanFragment context, ArrayList<Planet> planets) {
+    public PemasukanAdapter(PemasukanFragment context, ArrayList<Keuangan> keuangans) {
         this.context = context;
-        this.planets = planets;
+        this.keuangans = keuangans;
     }
 
     @NonNull
@@ -37,32 +37,36 @@ public class PemasukanAdapter extends RecyclerView.Adapter<PemasukanAdapter.Plan
 
     @Override
     public void onBindViewHolder(@NonNull PlanetHolder holder, int position) {
-        Planet planet = planets.get(position);
-        holder.setDetails(planet);
+        Keuangan keuangan = keuangans.get(position);
+        holder.setDetails(keuangan);
     }
 
     @Override
     public int getItemCount() {
-        return planets.size();
+        return keuangans.size();
     }
 
     class PlanetHolder extends RecyclerView.ViewHolder {
 
-        private TextView txtName, txtDistance, txtGravity, txtDiameter;
+        private TextView txtNama, txtDeskripsi, txtTanggal, txtUang;
 
         PlanetHolder(View itemView) {
             super(itemView);
-            txtName = itemView.findViewById(R.id.txtName);
-            txtDistance = itemView.findViewById(R.id.txtDistance);
-            txtGravity = itemView.findViewById(R.id.txtGravity);
-            txtDiameter = itemView.findViewById(R.id.txtDiameter);
+            txtNama = itemView.findViewById(R.id.txtNama);
+            txtDeskripsi = itemView.findViewById(R.id.txtDeskripsi);
+            txtTanggal = itemView.findViewById(R.id.txtTanggal);
+            txtUang = itemView.findViewById(R.id.txtUang);
         }
 
-        void setDetails(Planet planet) {
-            txtName.setText(planet.getPlanetName());
-            txtDistance.setText(String.format(Locale.US, "Distance from Sun : %d Million KM", planet.getDistanceFromSun()));
-            txtGravity.setText(String.format(Locale.US, "Surface Gravity : %d N/kg", planet.getGravity()));
-            txtDiameter.setText(String.format(Locale.US, "Diameter : %d KM", planet.getDiameter()));
+        void setDetails(Keuangan keuangan) {
+            Locale localeID = new Locale("in", "ID");
+            NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
+
+            txtNama.setText(keuangan.getNama());
+            txtDeskripsi.setText(keuangan.getDeskripsi());
+            txtTanggal.setText(keuangan.getTanggal());
+            txtUang.setText(formatRupiah.format((double) keuangan.getJml()));
         }
+
     }
 }

@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.unikom.go_cash.Adapter.PemasukanAdapter;
-import com.unikom.go_cash.Model.Planet;
+import com.unikom.go_cash.Model.Keuangan;
 
 import java.util.ArrayList;
 
@@ -27,7 +27,7 @@ public class PemasukanFragment extends Fragment {
     private static final int DATASET_COUNT = 60; // menampilkan data sebanyak value
     private RecyclerView recyclerView;
     private PemasukanAdapter adapter;
-    private ArrayList<Planet> planetArrayList;
+    private ArrayList<Keuangan> keuanganArrayList;
 
     private enum LayoutManagerType {
         GRID_LAYOUT_MANAGER,
@@ -180,32 +180,29 @@ public class PemasukanFragment extends Fragment {
     private void initView(View v) {
         recyclerView = (RecyclerView) v.findViewById(R.id.rcpemasukan);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        planetArrayList = new ArrayList<>();
-        adapter = new PemasukanAdapter(this, planetArrayList);
+        keuanganArrayList = new ArrayList<>();
+        adapter = new PemasukanAdapter(this, keuanganArrayList);
         recyclerView.setAdapter(adapter);
         // recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         createListData();
     }
 
     private void createListData() {
-        Planet planet = new Planet("Earth", 150, 10, 12750);
-        planetArrayList.add(planet);
-        planet = new Planet("Jupiter", 778, 26, 143000);
-        planetArrayList.add(planet);
-        planet = new Planet("Mars", 228, 4, 6800);
-        planetArrayList.add(planet);
-        planet = new Planet("Pluto", 5900, 1, 2320);
-        planetArrayList.add(planet);
-        planet = new Planet("Venus", 108, 9, 12750);
-        planetArrayList.add(planet);
-        planet = new Planet("Saturn", 1429, 11, 120000);
-        planetArrayList.add(planet);
-        planet = new Planet("Mercury", 58, 4, 4900);
-        planetArrayList.add(planet);
-        planet = new Planet("Neptune", 4500, 12, 50500);
-        planetArrayList.add(planet);
-        planet = new Planet("Uranus", 2870, 9, 52400);
-        planetArrayList.add(planet);
+        Keuangan keuangan = new Keuangan("19/08/2019", "Maemunah", "Uang Kas Mingguan", 2000);
+        keuanganArrayList.add(keuangan);
+        keuangan = new Keuangan("19/08/2019", "Epul", "Uang Kas Mingguan", 2000);
+        keuanganArrayList.add(keuangan);
+        keuangan = new Keuangan("19/08/2020", "Udin", "Uang Kas Mingguan", 3000);
+        keuanganArrayList.add(keuangan);
+        keuangan = new Keuangan("19/02/2019", "Siti", "Uang Kas Mingguan", 5000);
+        keuanganArrayList.add(keuangan);
+        keuangan = new Keuangan("14/07/2019", "Jubaedah", "Uang Kas Mingguan", 2500);
+        keuanganArrayList.add(keuangan);
+        keuangan = new Keuangan("9/02/2017", "Alip", "Uang Kas Mingguan", 500);
+        keuanganArrayList.add(keuangan);
+        keuangan = new Keuangan("1/08/2018", "Maemunah", "Uang Kas Mingguan", 2000);
+        keuanganArrayList.add(keuangan);
+
         adapter.notifyDataSetChanged();
     }
     public void pindah(View view){
