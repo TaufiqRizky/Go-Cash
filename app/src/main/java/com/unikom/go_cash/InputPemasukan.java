@@ -17,11 +17,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class coba extends Fragment {
+public class InputPemasukan extends Fragment {
     private RecyclerView rcPemasukan;
     private ArrayList<PemasukanModel> list = new ArrayList<>();
 
-    public  coba(){
+    public InputPemasukan(){
         //constructor
     }
 
@@ -32,18 +32,18 @@ public class coba extends Fragment {
 
 
         final Button tb_pemasukan = (Button)view.findViewById(R.id.tb_pemasukan);
-        tb_pemasukan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent pindah = new Intent(getActivity(), ListpemasukanAdapter.class);
-                startActivity(pindah);
-                Toast.makeText(getActivity(),"test",Toast.LENGTH_SHORT).show();
-
-
-
-            }
-            //}
-        });
+//        tb_pemasukan.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent pindah = new Intent(getActivity(), ListpemasukanAdapter.class);
+//                startActivity(pindah);
+//                Toast.makeText(getActivity(),"test",Toast.LENGTH_SHORT).show();
+//
+//
+//
+//            }
+//            //}
+//        });
         return view;
     }
 

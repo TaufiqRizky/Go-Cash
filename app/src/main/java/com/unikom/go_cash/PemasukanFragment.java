@@ -1,6 +1,5 @@
 package com.unikom.go_cash;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 
@@ -8,19 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.unikom.go_cash.Adapter.PemasukanAdapter;
+import com.unikom.go_cash.Model.Planet;
+
+import java.util.ArrayList;
 
 
 public class PemasukanFragment extends Fragment {
@@ -28,6 +25,9 @@ public class PemasukanFragment extends Fragment {
     private static final String KEY_LAYOUT_MANAGER = "layoutManager";
     private static final int SPAN_COUNT = 2;
     private static final int DATASET_COUNT = 60; // menampilkan data sebanyak value
+    private RecyclerView recyclerView;
+    private PemasukanAdapter adapter;
+    private ArrayList<Planet> planetArrayList;
 
     private enum LayoutManagerType {
         GRID_LAYOUT_MANAGER,
@@ -37,7 +37,7 @@ public class PemasukanFragment extends Fragment {
     protected LayoutManagerType mCurrentLayoutManagerType;
 
     protected RecyclerView mRecyclerView;
-    protected ListpemasukanAdapter mAdapter;
+    //protected ListpemasukanAdapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
     protected String[] mDataset, mDataset2;
     protected int[] mDataset3;
@@ -59,14 +59,14 @@ public class PemasukanFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_listpemasukan_adapter, container, false);
-        rootView.setTag(TAG);
-
-        //BEGIN_INCLUDE(initializeRecyclerView)
-        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rcpemasukan);
-
-        mLayoutManager = new LinearLayoutManager(getActivity());
-
-        mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
+//        rootView.setTag(TAG);
+//
+//        //BEGIN_INCLUDE(initializeRecyclerView)
+//        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rcpemasukan);
+//
+//        mLayoutManager = new LinearLayoutManager(getActivity());
+//
+//        mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
 
         Button btnapawelah = rootView.findViewById(R.id.btnTambah);
 
@@ -75,25 +75,25 @@ public class PemasukanFragment extends Fragment {
             public void onClick(View v) {
                 FragmentTransaction fragmentTransaction = getActivity()
                         .getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, new coba());
+                fragmentTransaction.replace(R.id.fragment_container, new InputPemasukan());
                 fragmentTransaction.commit();
                 //FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new coba()).commit();
+                //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new InputPemasukan()).commit();
             }
         });
 
-        if (savedInstanceState != null) {
-            // Restore saved layout manager type.
-            mCurrentLayoutManagerType = (LayoutManagerType) savedInstanceState
-                    .getSerializable(KEY_LAYOUT_MANAGER);
-        }
-        setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
-
-        mAdapter = new ListpemasukanAdapter(mDataset,mDataset2,mDataset3);
-        // Set CustomAdapter as the adapter for RecyclerView.
-        mRecyclerView.setAdapter(mAdapter);
-        // END_INCLUDE(initializeRecyclerView)
-
+//        if (savedInstanceState != null) {
+//            // Restore saved layout manager type.
+//            mCurrentLayoutManagerType = (LayoutManagerType) savedInstanceState
+//                    .getSerializable(KEY_LAYOUT_MANAGER);
+//        }
+//        setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
+//
+//        mAdapter = new ListpemasukanAdapter(mDataset,mDataset2,mDataset3);
+//        // Set CustomAdapter as the adapter for RecyclerView.
+//        mRecyclerView.setAdapter(mAdapter);
+//        // END_INCLUDE(initializeRecyclerView)
+        initView(rootView);
         return rootView;
     }
 
@@ -145,8 +145,8 @@ public class PemasukanFragment extends Fragment {
             mDataset3[i] = icon[i];
         }
 
-//         class coba extends Fragment {
-//          public  coba(){
+//         class InputPemasukan extends Fragment {
+//          public  InputPemasukan(){
 //            //constructor
 //        }
 //
@@ -160,7 +160,7 @@ public class PemasukanFragment extends Fragment {
 //            TambahPemasukan.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
-////                    Intent pindah = new Intent(getActivity(), com.unikom.go_cash.coba.class);
+////                    Intent pindah = new Intent(getActivity(), com.unikom.go_cash.InputPemasukan.class);
 ////                    startActivity(pindah);
 ////                    Toast.makeText(this,"test",Toast.LENGTH_SHORT).show();
 //
@@ -177,11 +177,42 @@ public class PemasukanFragment extends Fragment {
 
 
 }
+    private void initView(View v) {
+        recyclerView = (RecyclerView) v.findViewById(R.id.rcpemasukan);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        planetArrayList = new ArrayList<>();
+        adapter = new PemasukanAdapter(this, planetArrayList);
+        recyclerView.setAdapter(adapter);
+        // recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        createListData();
+    }
+
+    private void createListData() {
+        Planet planet = new Planet("Earth", 150, 10, 12750);
+        planetArrayList.add(planet);
+        planet = new Planet("Jupiter", 778, 26, 143000);
+        planetArrayList.add(planet);
+        planet = new Planet("Mars", 228, 4, 6800);
+        planetArrayList.add(planet);
+        planet = new Planet("Pluto", 5900, 1, 2320);
+        planetArrayList.add(planet);
+        planet = new Planet("Venus", 108, 9, 12750);
+        planetArrayList.add(planet);
+        planet = new Planet("Saturn", 1429, 11, 120000);
+        planetArrayList.add(planet);
+        planet = new Planet("Mercury", 58, 4, 4900);
+        planetArrayList.add(planet);
+        planet = new Planet("Neptune", 4500, 12, 50500);
+        planetArrayList.add(planet);
+        planet = new Planet("Uranus", 2870, 9, 52400);
+        planetArrayList.add(planet);
+        adapter.notifyDataSetChanged();
+    }
     public void pindah(View view){
         //Toast.makeText(getActivity(),"test", Toast.LENGTH_SHORT).show();
 //        Intent pindah = new Intent(getActivity(), ListpemasukanAdapter.class);
 //        startActivity(pindah);
-      //  getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new coba()).commit();
+      //  getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new InputPemasukan()).commit();
     }
 }
 
