@@ -1,6 +1,6 @@
-package com.unikom.go_cash;
+package com.unikom.go_cash.Model;
 
-public class PengeluaranModel {
+public class Pengeluaran {
 
     private String tanggal;
     private String detail;

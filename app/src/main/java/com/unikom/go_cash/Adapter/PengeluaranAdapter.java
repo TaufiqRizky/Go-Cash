@@ -1,4 +1,4 @@
-package com.unikom.go_cash;
+package com.unikom.go_cash.Adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,13 +8,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.unikom.go_cash.Model.Pengeluaran;
+import com.unikom.go_cash.R;
+
 import java.util.ArrayList;
 
-public class ListPengeluaranAdapter extends RecyclerView.Adapter<ListPengeluaranAdapter.ListViewHolder>{
+public class PengeluaranAdapter extends RecyclerView.Adapter<PengeluaranAdapter.ListViewHolder>{
 
-    private ArrayList<PengeluaranModel> listPengeluaran;
+    private ArrayList<Pengeluaran> listPengeluaran;
 
-    public ListPengeluaranAdapter(ArrayList<PengeluaranModel> listPengeluaran) {
+    public PengeluaranAdapter(ArrayList<Pengeluaran> listPengeluaran) {
         this.listPengeluaran = listPengeluaran;
     }
 
@@ -28,7 +31,7 @@ public class ListPengeluaranAdapter extends RecyclerView.Adapter<ListPengeluaran
 
     @Override
     public void onBindViewHolder(ListViewHolder holder, int position) {
-        PengeluaranModel pengeluaran = listPengeluaran.get(position);
+        Pengeluaran pengeluaran = listPengeluaran.get(position);
 
         holder.tvTanggal.setText(pengeluaran.getTanggal());
         holder.tvJumlah.setText(String.valueOf(pengeluaran.getJumlah()));

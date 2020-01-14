@@ -1,6 +1,5 @@
 package com.unikom.go_cash.Adapter;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +8,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.unikom.go_cash.ListPengeluaranAdapter;
 import com.unikom.go_cash.Model.Planet;
 import com.unikom.go_cash.R;
 import com.unikom.go_cash.ReportFragment;

@@ -11,11 +11,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.unikom.go_cash.Adapter.PengeluaranAdapter;
+import com.unikom.go_cash.Model.Pengeluaran;
+
 import java.util.ArrayList;
 
 public class PengeluaranFragment extends Fragment {
     private RecyclerView rvPengeluaran;
-    private ArrayList<PengeluaranModel> list = new ArrayList<>();
+    private ArrayList<Pengeluaran> list = new ArrayList<>();
 
     @Nullable
     @Override
@@ -44,7 +47,7 @@ public class PengeluaranFragment extends Fragment {
 //
     private void showRecyclerList() {
         rvPengeluaran.setLayoutManager(new LinearLayoutManager(getActivity()));
-        ListPengeluaranAdapter lpd = new ListPengeluaranAdapter(list);
+        PengeluaranAdapter lpd = new PengeluaranAdapter(list);
         rvPengeluaran.setAdapter(lpd);
     }
 }

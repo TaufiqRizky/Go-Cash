@@ -1,6 +1,6 @@
 package com.unikom.go_cash;
 
-import android.telecom.Call;
+import com.unikom.go_cash.Model.Pengeluaran;
 
 import java.util.ArrayList;
 
@@ -33,10 +33,10 @@ public class PengeluaranData {
             "Seminar Cloud Computing",
     };
 
-    static ArrayList<PengeluaranModel> getListData() {
-        ArrayList<PengeluaranModel> list = new ArrayList<>();
+    static ArrayList<Pengeluaran> getListData() {
+        ArrayList<Pengeluaran> list = new ArrayList<>();
         for (int position = 0; position < tanggalPengeluaran.length; position++) {
-            PengeluaranModel pengeluaran = new PengeluaranModel();
+            Pengeluaran pengeluaran = new Pengeluaran();
             pengeluaran.setTanggal(tanggalPengeluaran[position]);
             pengeluaran.setJumlah(jumlahPengeluaran[position]);
             pengeluaran.setDetail(detailsPengeluaran[position]);
