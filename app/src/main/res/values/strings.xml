@@ -3,11 +3,11 @@
     <string name="navigation_drawer_open">Open Navigation Drawer</string>
     <string name="navigation_drawer_close">Close Navigation Drawer</string>
     <string name="username">username</string>
-    <string name="txt_pemasukan">Pemasukan</string>
-    <string name="txt_pengeluaran">Pengeluaran</string>
+    <string name="txt_pemasukan">PEMASUKAN</string>
+    <string name="txt_pengeluaran">PENGELUARAN</string>
     <string name="email">email</string>
-    <string name="btn_edit">Edit</string>
-    <string name="btn_logout">Log out</string>
+    <string name="btn_edit">EDIT</string>
+    <string name="btn_logout">LOGOUT</string>
     <string name="txt_saldo">Saldo</string>
     <string-array name="Tahun">
         <item>-Thn-</item>

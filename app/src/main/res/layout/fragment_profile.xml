@@ -5,14 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="#fff"
     android:orientation="vertical">
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="400dp">
+        android:layout_height="370dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:background="@color/endOrange"
+            android:background="#34495e"
             android:orientation="vertical">
 
             <ImageView
@@ -27,60 +28,89 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:textSize="22sp"
-                android:textStyle="bold"
+                android:text="@string/username"
                 android:textColor="#fff"
-                android:text="@string/username" />
+                android:textSize="22sp"
+                android:textStyle="bold" />
         </LinearLayout>
+
         <androidx.cardview.widget.CardView
-            android:layout_width="380dp"
-            android:layout_height="120dp"
+            android:layout_width="350dp"
+            android:layout_height="100dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="275dp">
+            android:layout_marginTop="250dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:weightSum="2">
+
                 <LinearLayout
-                    android:gravity="center"
-                    android:orientation="vertical"
                     android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:layout_height="match_parent" >
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txt_pemasukan"
+                        android:textSize="20sp" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:text="@string/txt_pemasukan"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="1000K"
-                        android:textStyle="bold"
-                        android:textSize="25sp"
                         android:paddingTop="10dp"
-                        android:textColor="@color/endOrange"/>
+                        android:text="1Jt"
+                        android:textColor="#34495e"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
+                <!--                <LinearLayout-->
+                <!--                    android:gravity="center"-->
+                <!--                    android:orientation="vertical"-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:layout_height="match_parent" >-->
+                <!--                    <TextView-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:textSize="20sp"-->
+                <!--                        android:text="@string/txt_saldo"/>-->
+                <!--                    <TextView-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:text="5Jt"-->
+                <!--                        android:textStyle="bold"-->
+                <!--                        android:textSize="25sp"-->
+                <!--                        android:paddingTop="10dp"-->
+                <!--                        android:textColor="@color/endOrange"/>-->
+                <!--                </LinearLayout>-->
                 <LinearLayout
-                    android:gravity="center"
-                    android:orientation="vertical"
                     android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:layout_height="match_parent" >
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txt_pengeluaran"
+                        android:textSize="20sp" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:text="@string/txt_pengeluaran"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="500K"
-                        android:textStyle="bold"
-                        android:textSize="25sp"
                         android:paddingTop="10dp"
-                        android:textColor="@color/endOrange"/>
+                        android:text="500K"
+                        android:textColor="#34495e"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -93,7 +123,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp">
+        android:layout_marginTop="20dp">
+
         <LinearLayout
             android:paddingLeft="50dp"
             android:layout_width="match_parent"
@@ -136,16 +167,20 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
+                android:textSize="15dp"
                 android:background="@drawable/custombutton"
+                android:textColor="#fff"
                 android:text="@string/btn_edit" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:textSize="15dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/custombutton"
+                android:textColor="#fff"
                 android:text="@string/btn_logout" />
         </LinearLayout>
     </LinearLayout>
