@@ -74,7 +74,7 @@ public class PengeluaranFragment extends Fragment {
 //
     public  void  ShowPopup(View v){
         TextView txtExit;
-        addDialog.setContentView(R.layout.fragment_tambah_pengeluaran);
+        addDialog.setContentView(R.layout.fragment_tambah);
         txtExit = (TextView) addDialog.findViewById(R.id.txtExit);
         txtExit.setOnClickListener(new View.OnClickListener() {
             @Override

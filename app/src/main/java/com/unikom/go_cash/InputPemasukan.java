@@ -15,11 +15,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.unikom.go_cash.Model.Pemasukan;
+
 import java.util.ArrayList;
 
 public class InputPemasukan extends Fragment {
     private RecyclerView rcPemasukan;
-    private ArrayList<PemasukanModel> list = new ArrayList<>();
+    private ArrayList<Pemasukan> list = new ArrayList<>();
 
     public InputPemasukan(){
         //constructor
@@ -31,7 +33,7 @@ public class InputPemasukan extends Fragment {
         View view = inflater.inflate(R.layout.fragment_pemasukan, container, false);
 
 
-        final Button tb_pemasukan = (Button)view.findViewById(R.id.tb_pemasukan);
+        final Button tb_pemasukan = (Button)view.findViewById(R.id.simpan);
 //        tb_pemasukan.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {

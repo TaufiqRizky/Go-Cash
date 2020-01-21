@@ -27,14 +27,13 @@ public class Activity_Graph extends AppCompatActivity {
     }
 
     public void  buatGrafik(BarChart b){
-        b.setDrawBarShadow(false);
+        b.setDrawBarShadow(true);
         b.setDrawValueAboveBar(true);
         b.setMaxVisibleValueCount(50);
         b.setPinchZoom(true);
         b.setDrawGridBackground(true);
         b.setDrawValueAboveBar(true);
         b.animateY(1500);
-        b.setDrawGridBackground(false);
 
 
         ArrayList<BarEntry> barEntries = new ArrayList<>();

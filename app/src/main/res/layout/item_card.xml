@@ -5,12 +5,12 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     android:orientation="vertical"
-    android:background="@drawable/recycleview"
+    android:background="#ecf0f1"
     app:cardCornerRadius="2dp"
     app:cardElevation="6dp">
 
     <LinearLayout
-        android:background="@drawable/recycleview"
+        android:background="#34495e"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -20,6 +20,7 @@
             android:id="@+id/txtNama"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="monospace"
             android:padding="1dp"
             android:textColor="#fff" />
 
@@ -27,19 +28,25 @@
             android:id="@+id/txtTanggal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="1dp" />
+            android:fontFamily="monospace"
+            android:padding="1dp"
+            android:textColor="#DAA520" />
 
         <TextView
             android:id="@+id/txtUang"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="1dp" />
+            android:fontFamily="monospace"
+            android:padding="1dp"
+            android:textColor="#DAA520" />
 
         <TextView
             android:id="@+id/txtDeskripsi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="1dp" />
+            android:fontFamily="monospace"
+            android:padding="1dp"
+            android:textColor="#DAA520" />
 
     </LinearLayout>
 
