@@ -6,51 +6,56 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.unikom.go_cash.Model.Keuangan;
+import com.unikom.go_cash.Entity.Keuangan;
 import com.unikom.go_cash.PemasukanFragment;
 import com.unikom.go_cash.R;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
-public class PemasukanAdapter extends RecyclerView.Adapter<PemasukanAdapter.PlanetHolder> {
+public class PemasukanAdapter extends RecyclerView.Adapter<PemasukanAdapter.KeuanganHolder> {
 
     private PemasukanFragment context;
-    private ArrayList<Keuangan> keuangans;
+    private List<Keuangan> data = new ArrayList<>();
 
-    public PemasukanAdapter(PemasukanFragment context, ArrayList<Keuangan> keuangans) {
-        this.context = context;
-        this.keuangans = keuangans;
-    }
+
 
     @NonNull
     @Override
-    public PlanetHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
+    public KeuanganHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.item_card, parent, false);
 
-        return new PlanetHolder(view);
+        return new KeuanganHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PlanetHolder holder, int position) {
-        Keuangan keuangan = keuangans.get(position);
+    public void onBindViewHolder(@NonNull KeuanganHolder holder, int position) {
+        Keuangan keuangan = data.get(position);
         holder.setDetails(keuangan);
     }
 
+
     @Override
     public int getItemCount() {
-        return keuangans.size();
+        return data.size();
     }
 
-    class PlanetHolder extends RecyclerView.ViewHolder {
+    public void setData(List<Keuangan> keuangan) {
+        this.data=keuangan;
+        notifyDataSetChanged();
+    }
+
+    class KeuanganHolder extends RecyclerView.ViewHolder {
 
         private TextView txtNama, txtDeskripsi, txtTanggal, txtUang;
 
-        PlanetHolder(View itemView) {
+        KeuanganHolder(View itemView) {
             super(itemView);
             txtNama = itemView.findViewById(R.id.txtNama);
             txtDeskripsi = itemView.findViewById(R.id.txtDeskripsi);
@@ -63,10 +68,39 @@ public class PemasukanAdapter extends RecyclerView.Adapter<PemasukanAdapter.Plan
             NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
 
             txtNama.setText(keuangan.getNama());
-            txtDeskripsi.setText(keuangan.getDeskripsi());
-            txtTanggal.setText(keuangan.getTanggal());
-            txtUang.setText(formatRupiah.format((double) keuangan.getJml()));
+            txtDeskripsi.setText(keuangan.getDesc());
+            txtTanggal.setText(keuangan.getTgl());
+            txtUang.setText(formatRupiah.format((double) keuangan.getUang()));
         }
 
+    }
+    class KeuanganDiffCallback extends DiffUtil.Callback {
+
+        private final List<Keuangan> oldPosts, newPosts;
+
+        public KeuanganDiffCallback(List<Keuangan> oldPosts, List<Keuangan> newPosts) {
+            this.oldPosts = oldPosts;
+            this.newPosts = newPosts;
+        }
+
+        @Override
+        public int getOldListSize() {
+            return oldPosts.size();
+        }
+
+        @Override
+        public int getNewListSize() {
+            return newPosts.size();
+        }
+
+        @Override
+        public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
+            return oldPosts.get(oldItemPosition).getId() == newPosts.get(newItemPosition).getId();
+        }
+
+        @Override
+        public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
+            return oldPosts.get(oldItemPosition).equals(newPosts.get(newItemPosition));
+        }
     }
 }

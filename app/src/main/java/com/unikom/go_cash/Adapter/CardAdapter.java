@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.unikom.go_cash.Model.Keuangan;
+import com.unikom.go_cash.Entity.Keuangan;
 import com.unikom.go_cash.R;
 import com.unikom.go_cash.ReportFragment;
 
@@ -63,9 +63,9 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.PlanetHolder> 
             NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
 
             txtNama.setText(keuangan.getNama());
-            txtDeskripsi.setText(keuangan.getDeskripsi());
-            txtTanggal.setText(keuangan.getTanggal());
-            txtUang.setText(formatRupiah.format((double) keuangan.getJml()));
+            txtDeskripsi.setText(keuangan.getDesc());
+            txtTanggal.setText(keuangan.getTgl());
+            txtUang.setText(formatRupiah.format((double) keuangan.getUang()));
         }
 
     }

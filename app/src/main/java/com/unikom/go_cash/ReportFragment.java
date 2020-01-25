@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.unikom.go_cash.Adapter.CardAdapter;
-import com.unikom.go_cash.Model.Keuangan;
+import com.unikom.go_cash.Entity.Keuangan;
 
 import java.util.ArrayList;
 
@@ -92,22 +92,22 @@ public class ReportFragment extends Fragment {
     }
 
     private void createListData() {
-        Keuangan keuangan = new Keuangan("19/08/2019", "Maemunah", "Uang Kas Mingguan", 2000);
-        keuanganArrayList.add(keuangan);
-        keuangan = new Keuangan("19/08/2019", "Epul", "Uang Kas Mingguan", 2000);
-        keuanganArrayList.add(keuangan);
-        keuangan = new Keuangan("19/08/2020", "Udin", "Uang Kas Mingguan", 3000);
-        keuanganArrayList.add(keuangan);
-        keuangan = new Keuangan("19/02/2019", "Siti", "Uang Kas Mingguan", 5000);
-        keuanganArrayList.add(keuangan);
-        keuangan = new Keuangan("14/07/2019", "Jubaedah", "Uang Kas Mingguan", 2500);
-        keuanganArrayList.add(keuangan);
-        keuangan = new Keuangan("9/02/2017", "Alip", "Uang Kas Mingguan", 500);
-        keuanganArrayList.add(keuangan);
-        keuangan = new Keuangan("1/08/2018", "Maemunah", "Uang Kas Mingguan", 2000);
-        keuanganArrayList.add(keuangan);
-
-        adapter.notifyDataSetChanged();
+//        Keuangan keuangan = new Keuangan("19/08/2019", "Maemunah", "Uang Kas Mingguan", 2000);
+//        keuanganArrayList.add(keuangan);
+//        keuangan = new Keuangan("19/08/2019", "Epul", "Uang Kas Mingguan", 2000);
+//        keuanganArrayList.add(keuangan);
+//        keuangan = new Keuangan("19/08/2020", "Udin", "Uang Kas Mingguan", 3000);
+//        keuanganArrayList.add(keuangan);
+//        keuangan = new Keuangan("19/02/2019", "Siti", "Uang Kas Mingguan", 5000);
+//        keuanganArrayList.add(keuangan);
+//        keuangan = new Keuangan("14/07/2019", "Jubaedah", "Uang Kas Mingguan", 2500);
+//        keuanganArrayList.add(keuangan);
+//        keuangan = new Keuangan("9/02/2017", "Alip", "Uang Kas Mingguan", 500);
+//        keuanganArrayList.add(keuangan);
+//        keuangan = new Keuangan("1/08/2018", "Maemunah", "Uang Kas Mingguan", 2000);
+//        keuanganArrayList.add(keuangan);
+//
+//        adapter.notifyDataSetChanged();
     }
 
     public void ShowGrafik(View v){
