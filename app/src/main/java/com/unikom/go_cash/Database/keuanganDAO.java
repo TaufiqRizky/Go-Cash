@@ -31,6 +31,6 @@ public interface keuanganDAO {
     @Query("SELECT * FROM Keuangan where type='Pengeluaran'")
     LiveData<List<Keuangan>> getPengeluaran();
 
-    @Query("SELECT * FROM Keuangan ")
-    LiveData<List<Keuangan>> getlaporan();
+    @Query("SELECT * FROM Keuangan where strftime('%Y',Tanggal) IN(:thn) AND strftime('%m',Tanggal) IN(:bln)")
+    LiveData<List<Keuangan>> getlaporan(String thn , String bln);
 }

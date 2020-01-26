@@ -16,13 +16,15 @@ import java.util.List;
 public class KeuanganRepository {
     private keuanganDAO dao;
     private LiveData<List<Keuangan>> pemasukan,pengeluaran,laporan;
+    public String thn,bln;
 
     public  KeuanganRepository(Application application){
         KeuanganDatabase db = KeuanganDatabase.getInstance(application);
         dao=db.keuanganDAO();
         pemasukan= dao.getPemasukan();
         pengeluaran= dao.getPengeluaran();
-        laporan= dao.getlaporan();
+
+        laporan= dao.getlaporan(thn,bln);
     }
 
     public void insert (Keuangan keuangan){
@@ -48,7 +50,9 @@ public class KeuanganRepository {
         return pengeluaran;
     }
 
-    public LiveData<List<Keuangan>> getLaporan() {
+    public LiveData<List<Keuangan>> getLaporan(String thn , String bln) {
+        this.thn=thn;
+        this.bln=bln;
         return laporan;
     }
 

@@ -1,15 +1,19 @@
 package com.unikom.go_cash;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -17,14 +21,17 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.unikom.go_cash.Adapter.PemasukanAdapter;
 import com.unikom.go_cash.Entity.Keuangan;
 import com.unikom.go_cash.ViewModel.PemasukanViewModel;
 
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 
-public class PemasukanFragment extends Fragment {
+public class PemasukanFragment extends Fragment  {
     private static final String TAG = "RecyclerViewFragment";
     private static final String KEY_LAYOUT_MANAGER = "layoutManager";
 
@@ -40,10 +47,7 @@ public class PemasukanFragment extends Fragment {
 
         final View rootView = inflater.inflate(R.layout.activity_listpemasukan_adapter, container, false);
 
-        Button btnAdd = rootView.findViewById(R.id.btnTambah);
-        // initiate pemanggilan Room database
-//        db = Room.databaseBuilder(getActivity() ,
-//                KeuanganDatabase.class, "Keuangan").build();
+        FloatingActionButton btnAdd = rootView.findViewById(R.id.btnTambah);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +66,7 @@ public class PemasukanFragment extends Fragment {
         final String nama = "xxxx";
 
         Button btnSubmit;
+        ImageButton btnTanggal;
         TextView txtExit;
         final EditText edttgl, edtuang, edtdesc;
         addDialog.setContentView(R.layout.fragment_tambah);
@@ -69,33 +74,40 @@ public class PemasukanFragment extends Fragment {
         btnSubmit = (Button) addDialog.findViewById(R.id.btnSubmit);
         edtuang = (EditText) addDialog.findViewById(R.id.edtUang);
         edtdesc = (EditText) addDialog.findViewById(R.id.edtDesc);
-        edttgl = (EditText) addDialog.findViewById(R.id.edtTanggal);
+        //btnTanggal = (ImageButton) addDialog.findViewById(R.id.btnTanggall);
         txtExit = (TextView) addDialog.findViewById(R.id.txtExit);
 
+        //btn tanggal
+//        btnTanggal.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                DialogFragment datePicker = new com.unikom.go_cash.DatePicker();
+//                datePicker.show(getFragmentManager(), "date picker");
+//            }
+//        });
+
+        //btn close
         txtExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addDialog.dismiss();
             }
         });
-        String temp = edtuang.getText().toString();
-        int value = 0;
-        if (!"".equals(temp)) {
-            value = Integer.parseInt(temp);
-        }
-        final int finalValue = value;
-//        btnSubmit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Keuangan b = new Keuangan();
+
+        //btn submit
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Keuangan b = new Keuangan( );
 //                b.setDesc(edtdesc.getText().toString());
 //                b.setNama(nama);
 //                b.setType(type);
 //                b.setTgl(edttgl.getText().toString());
 //                b.setUang(finalValue);
 //                insertData(b);
-//            }
-//        });
+            }
+        });
         addDialog.show();
     }
 
@@ -117,9 +129,8 @@ public class PemasukanFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
 
-        // recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-
     }
+
 
 //    private void createListData() {
 //        Keuangan keuangan = new Keuangan("19/08/2019", "Maemunah", "Uang Kas Mingguan", 2000);
