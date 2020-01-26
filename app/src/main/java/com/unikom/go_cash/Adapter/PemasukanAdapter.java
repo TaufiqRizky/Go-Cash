@@ -15,6 +15,7 @@ import com.unikom.go_cash.PemasukanFragment;
 import com.unikom.go_cash.R;
 
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -68,10 +69,11 @@ public class PemasukanAdapter extends RecyclerView.Adapter<PemasukanAdapter.Keua
         void setDetails(Keuangan keuangan) {
             Locale localeID = new Locale("in", "ID");
             NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
             txtNama.setText(keuangan.getNama());
             txtDeskripsi.setText(keuangan.getDesc());
-            txtTanggal.setText(keuangan.getTgl());
+            txtTanggal.setText(formatter.format(keuangan.getTgl()));
             txtUang.setText(formatRupiah.format((double) keuangan.getUang()));
         }
 

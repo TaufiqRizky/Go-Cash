@@ -64,7 +64,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.PlanetHolder> 
 
             txtNama.setText(keuangan.getNama());
             txtDeskripsi.setText(keuangan.getDesc());
-            txtTanggal.setText(keuangan.getTgl());
+            //txtTanggal.setText(keuangan.getTgl());
             txtUang.setText(formatRupiah.format((double) keuangan.getUang()));
         }
 
