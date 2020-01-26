@@ -13,27 +13,27 @@ import  com.unikom.go_cash.Entity.Keuangan;
 
 @Database(entities = {Keuangan.class}, version = 1, exportSchema = false)
 public abstract class KeuanganDatabase extends RoomDatabase{
-    private static KeuanganDatabase INSTANCE;
+    private static KeuanganDatabase instance;
     public abstract keuanganDAO keuanganDAO();
 
     //private static final Object sLock = new Object();
 
     public static synchronized KeuanganDatabase getInstance(Context context) {
 
-            if (INSTANCE == null) {
-                INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+            if (instance == null) {
+                instance = Room.databaseBuilder(context.getApplicationContext(),
                         KeuanganDatabase.class, "Keuangan.db")
                         .fallbackToDestructiveMigration()
                         .addCallback(roomCallback)
                         .build();
             }
-            return INSTANCE;
+            return instance;
     }
     private static  RoomDatabase.Callback roomCallback= new RoomDatabase.Callback(){
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
-            new PopulateDbAsyncTask(INSTANCE).execute();
+            new PopulateDbAsyncTask(instance).execute();
         }
     };
     private  static  class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void>{
@@ -46,8 +46,9 @@ public abstract class KeuanganDatabase extends RoomDatabase{
         @Override
         protected Void doInBackground(Void... voids) {
             dao.insert(new Keuangan("19/08/2000", 20000, "kas", "Taufiq Rizky" ,"Pemasukan"));
-            dao.insert(new Keuangan("19/08/2000", 30000, "kas", "Taufiq Rizkyyy" ,"Pemasukan"));
-            dao.insert(new Keuangan("19/08/2000", 10000, "kas", "Taufiq Rizkyyy" ,"Pengeluaran"));
+            dao.insert(new Keuangan("20/08/2000", 30000, "kas", "Taufiq Rizkyyy" ,"Pemasukan"));
+            dao.insert(new Keuangan("21/08/2000", 10000, "kas", "Taufiq Rizkyyy D S" ,"Pengeluaran"));
+//            dao.deleteAll();
             return null;
         }
     }

@@ -17,12 +17,14 @@ import java.util.concurrent.Executors;
 
 public class PemasukanViewModel extends AndroidViewModel {
     private KeuanganRepository repo;
-    private  LiveData<List<Keuangan>> pemasukan;
+    private  LiveData<List<Keuangan>> pemasukan,pengeluaran,laporan;
 
     public PemasukanViewModel(@NonNull Application application) {
         super(application);
         repo = new KeuanganRepository(application);
         pemasukan = repo.getPemasukan();
+        pengeluaran = repo.getPengeluaran();
+        laporan = repo.getLaporan();
     }
 
     public  void  insert (Keuangan keuangan){
@@ -36,9 +38,20 @@ public class PemasukanViewModel extends AndroidViewModel {
     public  void  delete (Keuangan keuangan){
         repo.delete(keuangan);
     }
+    public void deleteAll() {
+        repo.deleteAll();
+    }
 
     public  LiveData<List<Keuangan>> getPemasukan(){
         return pemasukan;
+    }
+
+    public  LiveData<List<Keuangan>> getPengeluaran(){
+        return pengeluaran;
+    }
+
+    public  LiveData<List<Keuangan>> getLaporan(){
+        return laporan;
     }
 
 

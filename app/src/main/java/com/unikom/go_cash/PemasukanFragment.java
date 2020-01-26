@@ -102,8 +102,8 @@ public class PemasukanFragment extends Fragment {
     private void initView(View v) {
         adapter = new PemasukanAdapter();
 
-        viewModel = ViewModelProviders.of(this).get(PemasukanViewModel.class);
-        viewModel.getPemasukan().observe(this, new Observer<List<Keuangan>>() {
+        viewModel = ViewModelProviders.of(getActivity()).get(PemasukanViewModel.class);
+        viewModel.getPemasukan().observe(getActivity(), new Observer<List<Keuangan>>() {
             @Override
             public void onChanged(List<Keuangan> keuangans) {
                 Toast.makeText(getActivity(), "test", Toast.LENGTH_SHORT).show();

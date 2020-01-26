@@ -10,22 +10,22 @@ import  java.io.Serializable;
 public class Keuangan implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
-    public int id;
+    private int id;
 
     @ColumnInfo(name = "Tanggal")
-    public String tgl;
+    private String tgl;
 
     @ColumnInfo(name = "uang")
-    public int uang;
+    private int uang;
 
     @ColumnInfo(name = "keterangan")
-    public String desc;
+    private String desc;
 
     @ColumnInfo(name = "nama")
-    public String nama;
+    private String nama;
 
     @ColumnInfo(name = "type")
-    public String type;
+    private String type;
 
     public Keuangan( String tgl, int uang, String desc, String nama, String type) {
 

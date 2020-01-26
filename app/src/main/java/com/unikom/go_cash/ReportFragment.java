@@ -9,17 +9,24 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.unikom.go_cash.Adapter.CardAdapter;
+import com.unikom.go_cash.Adapter.PemasukanAdapter;
 import com.unikom.go_cash.Entity.Keuangan;
+import com.unikom.go_cash.ViewModel.PemasukanViewModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.unikom.go_cash.R.layout.activity__graph;
 
@@ -28,8 +35,8 @@ public class ReportFragment extends Fragment {
     Dialog grafikDialog;
     private Button btnGrafik;
     private RecyclerView recyclerView;
-    private CardAdapter adapter;
-    private ArrayList<Keuangan> keuanganArrayList;
+    private PemasukanAdapter adapter;
+    private PemasukanViewModel viewModel;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
@@ -82,33 +89,24 @@ public class ReportFragment extends Fragment {
     }
 
     private void initView(View v) {
-        recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
+        adapter = new PemasukanAdapter();
+
+        viewModel = ViewModelProviders.of(getActivity()).get(PemasukanViewModel.class);
+        viewModel.getLaporan().observe(getActivity(), new Observer<List<Keuangan>>() {
+            @Override
+            public void onChanged(List<Keuangan> keuangans) {
+                Toast.makeText(getActivity(), "test", Toast.LENGTH_SHORT).show();
+                adapter.setData(keuangans);
+            }
+        });
+        RecyclerView recyclerView = v.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        keuanganArrayList = new ArrayList<>();
-        adapter = new CardAdapter(this, keuanganArrayList);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
-        // recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-        createListData();
     }
 
-    private void createListData() {
-//        Keuangan keuangan = new Keuangan("19/08/2019", "Maemunah", "Uang Kas Mingguan", 2000);
-//        keuanganArrayList.add(keuangan);
-//        keuangan = new Keuangan("19/08/2019", "Epul", "Uang Kas Mingguan", 2000);
-//        keuanganArrayList.add(keuangan);
-//        keuangan = new Keuangan("19/08/2020", "Udin", "Uang Kas Mingguan", 3000);
-//        keuanganArrayList.add(keuangan);
-//        keuangan = new Keuangan("19/02/2019", "Siti", "Uang Kas Mingguan", 5000);
-//        keuanganArrayList.add(keuangan);
-//        keuangan = new Keuangan("14/07/2019", "Jubaedah", "Uang Kas Mingguan", 2500);
-//        keuanganArrayList.add(keuangan);
-//        keuangan = new Keuangan("9/02/2017", "Alip", "Uang Kas Mingguan", 500);
-//        keuanganArrayList.add(keuangan);
-//        keuangan = new Keuangan("1/08/2018", "Maemunah", "Uang Kas Mingguan", 2000);
-//        keuanganArrayList.add(keuangan);
-//
-//        adapter.notifyDataSetChanged();
-    }
+
 
     public void ShowGrafik(View v){
         TextView txtClose;

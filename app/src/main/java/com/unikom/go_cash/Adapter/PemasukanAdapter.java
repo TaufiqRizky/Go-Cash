@@ -1,5 +1,6 @@
 package com.unikom.go_cash.Adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,7 @@ public class PemasukanAdapter extends RecyclerView.Adapter<PemasukanAdapter.Keua
     @Override
     public void onBindViewHolder(@NonNull KeuanganHolder holder, int position) {
         Keuangan keuangan = data.get(position);
+
         holder.setDetails(keuangan);
     }
 

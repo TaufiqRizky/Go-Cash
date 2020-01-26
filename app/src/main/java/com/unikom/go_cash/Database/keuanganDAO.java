@@ -22,6 +22,15 @@ public interface keuanganDAO {
     @Delete
     void delete(Keuangan uang);
 
-    @Query("SELECT * FROM Keuangan where type='pemasukan'")
+    @Query("DELETE FROM Keuangan")
+    void deleteAll();
+
+    @Query("SELECT * FROM Keuangan where type='Pemasukan'")
     LiveData<List<Keuangan>> getPemasukan();
+
+    @Query("SELECT * FROM Keuangan where type='Pengeluaran'")
+    LiveData<List<Keuangan>> getPengeluaran();
+
+    @Query("SELECT * FROM Keuangan ")
+    LiveData<List<Keuangan>> getlaporan();
 }

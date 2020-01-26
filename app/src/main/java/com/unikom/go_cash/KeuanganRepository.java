@@ -15,12 +15,14 @@ import java.util.List;
 
 public class KeuanganRepository {
     private keuanganDAO dao;
-    private LiveData<List<Keuangan>> pemasukan;
+    private LiveData<List<Keuangan>> pemasukan,pengeluaran,laporan;
 
     public  KeuanganRepository(Application application){
         KeuanganDatabase db = KeuanganDatabase.getInstance(application);
         dao=db.keuanganDAO();
         pemasukan= dao.getPemasukan();
+        pengeluaran= dao.getPengeluaran();
+        laporan= dao.getlaporan();
     }
 
     public void insert (Keuangan keuangan){
@@ -34,9 +36,20 @@ public class KeuanganRepository {
     public void delete (Keuangan keuangan){
         new DeletePemasukanAsnycTask(dao).execute(keuangan);
     }
+    public void deleteAll() {
+        new DeleteAllAsyncTask(dao).execute();
+    }
 
     public LiveData<List<Keuangan>> getPemasukan() {
         return pemasukan;
+    }
+
+    public LiveData<List<Keuangan>> getPengeluaran() {
+        return pengeluaran;
+    }
+
+    public LiveData<List<Keuangan>> getLaporan() {
+        return laporan;
     }
 
     private  static class  InsertPemasukanAsnycTask extends AsyncTask<Keuangan,Void,Void>{
@@ -63,6 +76,20 @@ public class KeuanganRepository {
         @Override
         protected Void doInBackground(Keuangan... keuangans) {
             dao.update(keuangans[0]);
+            return null;
+        }
+    }
+
+    private static class DeleteAllAsyncTask extends AsyncTask<Void, Void, Void> {
+        private keuanganDAO dao;
+
+        private DeleteAllAsyncTask(keuanganDAO dao) {
+            this.dao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            dao.deleteAll();
             return null;
         }
     }
