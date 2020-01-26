@@ -10,9 +10,9 @@
     app:cardElevation="6dp">
 
     <LinearLayout
-        android:background="#34495e"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/orange"
         android:orientation="vertical"
         android:padding="12dp">
 
@@ -20,33 +20,33 @@
             android:id="@+id/txtNama"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="monospace"
+            android:fontFamily="@font/averia_gruesa_libre"
             android:padding="1dp"
-            android:textColor="#fff" />
+            android:textColor="@color/light" />
 
         <TextView
             android:id="@+id/txtTanggal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="monospace"
+            android:fontFamily="@font/averia_gruesa_libre"
             android:padding="1dp"
-            android:textColor="#DAA520" />
+            android:textColor="@color/dark" />
 
         <TextView
             android:id="@+id/txtUang"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="monospace"
+            android:fontFamily="@font/averia_gruesa_libre"
             android:padding="1dp"
-            android:textColor="#DAA520" />
+            android:textColor="@color/dark" />
 
         <TextView
             android:id="@+id/txtDeskripsi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="monospace"
+            android:fontFamily="@font/averia_gruesa_libre"
             android:padding="1dp"
-            android:textColor="#DAA520" />
+            android:textColor="@color/dark" />
 
     </LinearLayout>
 

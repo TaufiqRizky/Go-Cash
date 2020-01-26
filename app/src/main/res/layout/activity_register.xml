@@ -3,7 +3,7 @@
     android:layout_width="350dp"
     android:layout_height="475dp"
     android:layout_gravity="center"
-    android:background="#40739e"
+    android:background="@color/light"
     android:orientation="vertical"
     android:padding="5dp">
 
@@ -17,7 +17,7 @@
         android:fontFamily="sans-serif-black"
         android:gravity="center"
         android:text="X"
-        android:textColor="#fff"
+        android:textColor="@color/dark"
         android:textSize="20dp"
         android:textStyle="bold" />
 
@@ -29,12 +29,13 @@
         android:layout_marginTop="80dp"
         android:layout_marginBottom="15dp"
         android:width="300dp"
-        android:backgroundTint="#e1b12c"
+        android:backgroundTint="@color/orange"
         android:ems="10"
+        android:fontFamily="@font/averia_gruesa_libre"
         android:hint="Full Name"
         android:inputType="textPersonName"
-        android:textColor="#ecf0f1"
-        android:textColorHint="#ecf0f1" />
+        android:textColor="@color/dark"
+        android:textColorHint="@color/dark" />
 
     <EditText
         android:id="@+id/edtUsername"
@@ -43,12 +44,13 @@
         android:layout_gravity="center"
         android:layout_marginBottom="15dp"
         android:width="300dp"
-        android:backgroundTint="#e1b12c"
+        android:backgroundTint="@color/orange"
         android:ems="10"
+        android:fontFamily="@font/averia_gruesa_libre"
         android:hint="Username"
         android:inputType="textPersonName"
-        android:textColor="#ecf0f1"
-        android:textColorHint="#ecf0f1" />
+        android:textColor="@color/dark"
+        android:textColorHint="@color/dark" />
 
     <EditText
         android:id="@+id/edtPassword"
@@ -56,12 +58,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:width="300dp"
-        android:backgroundTint="#e1b12c"
+        android:backgroundTint="@color/orange"
         android:ems="10"
+        android:fontFamily="@font/averia_gruesa_libre"
         android:hint="Password"
         android:inputType="textPassword"
-        android:textColor="#ecf0f1"
-        android:textColorHint="#ecf0f1" />
+        android:textColor="@color/dark"
+        android:textColorHint="@color/dark" />
 
     <Button
         android:id="@+id/btnRegister"
@@ -70,7 +73,9 @@
         android:layout_gravity="center"
         android:layout_marginTop="95dp"
         android:width="300dp"
-        android:backgroundTint="#e1b12c"
-        android:text="Register" />
+        android:background="@color/dark"
+        android:fontFamily="@font/averia_gruesa_libre"
+        android:text="Register"
+        android:textColor="@color/light" />
 
 </LinearLayout>
