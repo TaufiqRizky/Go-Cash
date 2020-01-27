@@ -20,10 +20,13 @@ public interface keuanganDAO {
     void update(Keuangan keuangan);
 
     @Delete
-    void delete(Keuangan keuangan);
+    void  deleteKeuangan(Keuangan keuangan);
 
     @Query("DELETE FROM Keuangan")
     void deleteAll();
+
+    @Query("DELETE FROM Keuangan where id = :id")
+    void deleteTest(int id);
 
     @Query("SELECT sum(uang) as SUM FROM Keuangan where type='Pemasukan'")
     LiveData<Integer> SumPemasukan();

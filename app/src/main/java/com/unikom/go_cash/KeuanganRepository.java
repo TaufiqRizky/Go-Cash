@@ -2,6 +2,7 @@ package com.unikom.go_cash;
 
 import android.app.Application;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
@@ -10,6 +11,8 @@ import com.unikom.go_cash.Database.keuanganDAO;
 import com.unikom.go_cash.Entity.Keuangan;
 
 import java.util.List;
+
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class KeuanganRepository {
     private keuanganDAO dao;
@@ -105,15 +108,16 @@ public class KeuanganRepository {
     }
 
     private static class DeleteAsyncTask extends AsyncTask<Keuangan, Void, Void> {
-        private keuanganDAO noteDao;
+        private keuanganDAO dao;
 
-        private DeleteAsyncTask(keuanganDAO noteDao) {
-            this.noteDao = noteDao;
+        private DeleteAsyncTask(keuanganDAO keuanagan) {
+            this.dao = keuanagan;
         }
 
         @Override
-        protected Void doInBackground(Keuangan... notes) {
-            noteDao.delete(notes[0]);
+        protected Void doInBackground(final Keuangan... uang) {
+            dao.deleteKeuangan(uang[0]);
+            Log.d(TAG, "doInBackground: "+uang[0]);
             return null;
         }
     }

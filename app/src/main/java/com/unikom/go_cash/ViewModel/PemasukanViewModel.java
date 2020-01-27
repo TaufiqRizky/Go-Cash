@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.unikom.go_cash.Database.keuanganDAO;
 import com.unikom.go_cash.Entity.Keuangan;
 import com.unikom.go_cash.KeuanganRepository;
 
@@ -16,6 +17,7 @@ public class PemasukanViewModel extends AndroidViewModel {
     private  LiveData<List<Keuangan>> pemasukan,pengeluaran,laporan;
     private LiveData<Integer> sumPemasukan,sumPengeluaran;
     public  String thn,bln;
+    public  keuanganDAO dao ;
 
 
     public PemasukanViewModel(@NonNull Application application) {
@@ -38,6 +40,12 @@ public class PemasukanViewModel extends AndroidViewModel {
 
     public  void  delete (Keuangan keuangan){
         repo.delete(keuangan);
+    }
+
+    public  void  deleteTest (int id){
+
+        dao.deleteTest(id);
+
     }
     public void deleteAll() {
         repo.deleteAll();

@@ -46,7 +46,7 @@ public class Keuangan implements Serializable {
     }
 
     public void setId(int id) {
-        id = id;
+        this.id = id;
     }
 
     public Date getTgl() {

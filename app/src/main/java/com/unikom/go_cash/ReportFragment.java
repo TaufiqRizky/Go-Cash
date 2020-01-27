@@ -74,13 +74,21 @@ public class ReportFragment extends Fragment {
         viewModel.getSumPengeluaran().observe(getActivity(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
-                sumPengeluaran[0] = integer;
+                if (integer == null){
+                    sumPengeluaran[0]=0;
+                }else {
+                    sumPengeluaran[0] = integer;
+                }
             }
         });
         viewModel.getSumPemasukan().observe(getActivity(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
-                sumPemasukan[0] =integer;
+                if (integer == null){
+                    sumPemasukan[0]=0;
+                }else {
+                    sumPemasukan[0] = integer;
+                }
             }
         });
 
@@ -114,7 +122,7 @@ public class ReportFragment extends Fragment {
         viewModel.getLaporan("2000","9").observe(getActivity(), new Observer<List<Keuangan>>() {
             @Override
             public void onChanged(List<Keuangan> keuangans) {
-                Toast.makeText(getActivity(), "test", Toast.LENGTH_SHORT).show();
+
                 adapter.setData(keuangans);
             }
         });

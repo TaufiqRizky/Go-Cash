@@ -32,7 +32,7 @@
         android:layout_margin="32dp"
         android:backgroundTint="@color/dark"
         android:src="@drawable/ic_add"
-        android:tint="#ff0000"
+        android:tint="@color/orange"
         app:itemIconTint="@color/orange"
         app:itemTextColor="@color/orange"
         tools:layout_editor_absoluteX="251dp"

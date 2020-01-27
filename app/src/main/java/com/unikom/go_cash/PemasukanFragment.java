@@ -69,7 +69,7 @@ public class PemasukanFragment extends Fragment  {
         final String nama = "xxxx";
 
         Button btnSubmit;
-        TextView txtExit;
+        TextView txtExit ,txtjdl;
         final EditText edttgl, edtuang, edtdesc;
         addDialog.setContentView(R.layout.fragment_tambah);
 
@@ -78,6 +78,9 @@ public class PemasukanFragment extends Fragment  {
         edtdesc = (EditText) addDialog.findViewById(R.id.edtDesc);
 
         txtExit = (TextView) addDialog.findViewById(R.id.txtExit);
+        txtjdl = (TextView) addDialog.findViewById(R.id.txtCatatan);
+
+        txtjdl.setText(type.toUpperCase());
 
 
         //btn close
@@ -111,7 +114,7 @@ public class PemasukanFragment extends Fragment  {
         viewModel.getPemasukan().observe(getActivity(), new Observer<List<Keuangan>>() {
             @Override
             public void onChanged(List<Keuangan> keuangans) {
-                Toast.makeText(getActivity(), "test", Toast.LENGTH_SHORT).show();
+                if (keuangans != null)
                 adapter.setData(keuangans);
             }
         });
@@ -130,8 +133,16 @@ public class PemasukanFragment extends Fragment  {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                int position = viewHolder.getAdapterPosition();
+                Keuangan myWord = adapter.getUangat(position);
+                Toast.makeText(getActivity(), "Deleting " +
+                        myWord.getNama(), Toast.LENGTH_LONG).show();
+
+                // Delete the word
+                //viewModel.deleteTest(myWord.getId());
                 viewModel.delete(adapter.getUangat(viewHolder.getAdapterPosition()));
-                Log.d(TAG, "onSwiped: "+adapter.getUangat(viewHolder.getAdapterPosition()));
+                Log.d(TAG, "onSwiped: "+myWord.getId());
+
                 Toast.makeText(getActivity(),"Berhasil Delete", Toast.LENGTH_SHORT).show();
 
             }
