@@ -2,6 +2,7 @@ package com.unikom.go_cash;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -28,6 +30,7 @@ import com.unikom.go_cash.ViewModel.PemasukanViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import static androidx.constraintlayout.widget.Constraints.TAG;
 import static com.unikom.go_cash.R.layout.activity__graph;
 
 public class ReportFragment extends Fragment {
@@ -37,6 +40,8 @@ public class ReportFragment extends Fragment {
     private RecyclerView recyclerView;
     private PemasukanAdapter adapter;
     private PemasukanViewModel viewModel;
+    final int[] sumPemasukan = new int[1];
+    final int[] sumPengeluaran = new int[1];
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
@@ -52,6 +57,9 @@ public class ReportFragment extends Fragment {
         adapterBln.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         BulanSpin.setAdapter(adapterBln);
 
+
+
+
         grafikDialog = new Dialog(getActivity());
         btnGrafik = (Button) view.findViewById(R.id.btnGrafik);
         btnGrafik.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +71,18 @@ public class ReportFragment extends Fragment {
 
         initView(view);
 
-
+        viewModel.getSumPengeluaran().observe(getActivity(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                sumPengeluaran[0] = integer;
+            }
+        });
+        viewModel.getSumPemasukan().observe(getActivity(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                sumPemasukan[0] =integer;
+            }
+        });
 
 
 
@@ -118,9 +137,11 @@ public class ReportFragment extends Fragment {
 //                grafikDialog.dismiss();
 //            }
 //        });
+
+        //Log.d(TAG, "aass  "+x.toString());
         BarChart barChart= grafikDialog.findViewById(R.id.barchart);
         Activity_Graph a = new Activity_Graph();
-        a.buatGrafik(barChart);
+        a.buatGrafik(barChart,sumPemasukan[0],sumPengeluaran[0]);
 
         grafikDialog.show();
     }

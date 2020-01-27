@@ -6,19 +6,17 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.unikom.go_cash.Database.KeuanganDatabase;
-import com.unikom.go_cash.Database.keuanganDAO;
 import com.unikom.go_cash.Entity.Keuangan;
 import com.unikom.go_cash.KeuanganRepository;
 
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class PemasukanViewModel extends AndroidViewModel {
     private KeuanganRepository repo;
     private  LiveData<List<Keuangan>> pemasukan,pengeluaran,laporan;
+    private LiveData<Integer> sumPemasukan,sumPengeluaran;
     public  String thn,bln;
+
 
     public PemasukanViewModel(@NonNull Application application) {
         super(application);
@@ -26,6 +24,8 @@ public class PemasukanViewModel extends AndroidViewModel {
         pemasukan = repo.getPemasukan();
         pengeluaran = repo.getPengeluaran();
         laporan = repo.getLaporan(thn,bln);
+        sumPemasukan=repo.getSumPemasukan();
+        sumPengeluaran=repo.getSumPengeluaran();
     }
 
     public  void  insert (Keuangan keuangan){
@@ -41,6 +41,13 @@ public class PemasukanViewModel extends AndroidViewModel {
     }
     public void deleteAll() {
         repo.deleteAll();
+    }
+
+    public LiveData<Integer> getSumPemasukan() {
+        return sumPemasukan;
+    }
+    public LiveData<Integer> getSumPengeluaran() {
+        return sumPengeluaran;
     }
 
     public  LiveData<List<Keuangan>> getPemasukan(){

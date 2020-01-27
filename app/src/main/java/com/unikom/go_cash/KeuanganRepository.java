@@ -4,8 +4,6 @@ import android.app.Application;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
-import androidx.room.Delete;
-import androidx.room.Update;
 
 import com.unikom.go_cash.Database.KeuanganDatabase;
 import com.unikom.go_cash.Database.keuanganDAO;
@@ -16,6 +14,7 @@ import java.util.List;
 public class KeuanganRepository {
     private keuanganDAO dao;
     private LiveData<List<Keuangan>> pemasukan,pengeluaran,laporan;
+    private LiveData<Integer> sumPemasukan,sumPengeluaran;
     public String thn,bln;
 
     public  KeuanganRepository(Application application){
@@ -23,8 +22,9 @@ public class KeuanganRepository {
         dao=db.keuanganDAO();
         pemasukan= dao.getPemasukan();
         pengeluaran= dao.getPengeluaran();
-
         laporan= dao.getlaporan(thn,bln);
+        sumPemasukan=dao.SumPemasukan();
+        sumPengeluaran=dao.SumPengeluaran();
     }
 
     public void insert (Keuangan keuangan){
@@ -36,12 +36,18 @@ public class KeuanganRepository {
     }
 
     public void delete (Keuangan keuangan){
-        new DeletePemasukanAsnycTask(dao).execute(keuangan);
+        new DeleteAsyncTask(dao).execute(keuangan);
     }
     public void deleteAll() {
         new DeleteAllAsyncTask(dao).execute();
     }
 
+    public LiveData<Integer> getSumPemasukan() {
+        return sumPemasukan;
+    }
+    public LiveData<Integer> getSumPengeluaran() {
+        return sumPengeluaran;
+    }
     public LiveData<List<Keuangan>> getPemasukan() {
         return pemasukan;
     }
@@ -98,16 +104,16 @@ public class KeuanganRepository {
         }
     }
 
-    private  static class  DeletePemasukanAsnycTask extends AsyncTask<Keuangan,Void,Void>{
-        private  keuanganDAO dao;
+    private static class DeleteAsyncTask extends AsyncTask<Keuangan, Void, Void> {
+        private keuanganDAO noteDao;
 
-        private DeletePemasukanAsnycTask(keuanganDAO dao){
-            this.dao=dao;
+        private DeleteAsyncTask(keuanganDAO noteDao) {
+            this.noteDao = noteDao;
         }
 
         @Override
-        protected Void doInBackground(Keuangan... keuangans) {
-            dao.delete(keuangans[0]);
+        protected Void doInBackground(Keuangan... notes) {
+            noteDao.delete(notes[0]);
             return null;
         }
     }

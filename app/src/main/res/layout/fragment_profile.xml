@@ -22,8 +22,9 @@
                 android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="30dp"
-                android:src="@drawable/ic_user_100px"
-                app:srcCompat="@drawable/ic_account_circle_black" />
+                android:src="@drawable/ic_user_100px"/>
+                //app:srcCompat="@drawable/ic_account_circle_black"
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -155,7 +156,7 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:src="@drawable/ic_userr"
-                app:srcCompat="@drawable/ic_person_outline_black_24dp" />
+               />// app:srcCompat="@drawable/ic_person_outline_black_24dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -177,7 +178,7 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:src="@drawable/ic_email"
-                app:srcCompat="@drawable/ic_email_black_24dp" />
+                />//app:srcCompat="@drawable/ic_email_black_24dp" />
 
             <TextView
                 android:layout_width="wrap_content"

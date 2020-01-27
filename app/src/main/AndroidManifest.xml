@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Activity_Graph"></activity>
-        <activity android:name=".ListpemasukanAdapter" /> <!-- <activity android:name=".SigninActivity"></activity> -->
-        <activity android:name=".PemasukanModel" />
+<!--        <activity android:name=".ListpemasukanAdapter" /> &lt;!&ndash; <activity android:name=".SigninActivity"></activity> &ndash;&gt;-->
+<!--        <activity android:name=".Pemasukan" />-->
         <activity android:name=".MainActivity">
 
             <!-- <intent-filter> -->
@@ -32,6 +32,7 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>

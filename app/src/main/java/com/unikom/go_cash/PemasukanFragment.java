@@ -3,6 +3,7 @@ package com.unikom.go_cash;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +14,13 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -66,7 +69,6 @@ public class PemasukanFragment extends Fragment  {
         final String nama = "xxxx";
 
         Button btnSubmit;
-        ImageButton btnTanggal;
         TextView txtExit;
         final EditText edttgl, edtuang, edtdesc;
         addDialog.setContentView(R.layout.fragment_tambah);
@@ -74,18 +76,9 @@ public class PemasukanFragment extends Fragment  {
         btnSubmit = (Button) addDialog.findViewById(R.id.btnSubmit);
         edtuang = (EditText) addDialog.findViewById(R.id.edtUang);
         edtdesc = (EditText) addDialog.findViewById(R.id.edtDesc);
-        //btnTanggal = (ImageButton) addDialog.findViewById(R.id.btnTanggall);
+
         txtExit = (TextView) addDialog.findViewById(R.id.txtExit);
 
-        //btn tanggal
-//        btnTanggal.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                DialogFragment datePicker = new com.unikom.go_cash.DatePicker();
-//                datePicker.show(getFragmentManager(), "date picker");
-//            }
-//        });
 
         //btn close
         txtExit.setOnClickListener(new View.OnClickListener() {
@@ -122,11 +115,27 @@ public class PemasukanFragment extends Fragment  {
                 adapter.setData(keuangans);
             }
         });
+
         RecyclerView recyclerView = v.findViewById(R.id.rcpemasukan);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                viewModel.delete(adapter.getUangat(viewHolder.getAdapterPosition()));
+                Log.d(TAG, "onSwiped: "+adapter.getUangat(viewHolder.getAdapterPosition()));
+                Toast.makeText(getActivity(),"Berhasil Delete", Toast.LENGTH_SHORT).show();
+
+            }
+        }).attachToRecyclerView(recyclerView);
 
 
     }

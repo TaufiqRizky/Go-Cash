@@ -37,8 +37,8 @@ public class TambahPengeluaran extends Fragment implements DatePickerDialog.OnDa
         btnDatePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment datePicker = new DatePickerFragment();
-                datePicker.show(getActivity().getSupportFragmentManager(), "date picker");
+//                DialogFragment datePicker = new DatePickerFragment();
+//                datePicker.show(getActivity().getSupportFragmentManager(), "date picker");
             }
         });
         return view;
@@ -50,7 +50,7 @@ public class TambahPengeluaran extends Fragment implements DatePickerDialog.OnDa
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, day);
-        String currenDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
+       // String currenDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
 
 //        TextView tv = (TextView) getView().findViewById(R.id.tvDateResult);
 //        tv.setText(currenDateString);

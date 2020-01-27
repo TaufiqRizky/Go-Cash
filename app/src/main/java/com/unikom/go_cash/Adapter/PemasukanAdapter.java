@@ -1,17 +1,14 @@
 package com.unikom.go_cash.Adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.unikom.go_cash.Entity.Keuangan;
-import com.unikom.go_cash.PemasukanFragment;
 import com.unikom.go_cash.R;
 
 import java.text.NumberFormat;
@@ -22,7 +19,7 @@ import java.util.Locale;
 
 public class PemasukanAdapter extends RecyclerView.Adapter<PemasukanAdapter.KeuanganHolder> {
 
-    private PemasukanFragment context;
+
     private List<Keuangan> data = new ArrayList<>();
 
 
@@ -54,6 +51,10 @@ public class PemasukanAdapter extends RecyclerView.Adapter<PemasukanAdapter.Keua
         notifyDataSetChanged();
     }
 
+    public  Keuangan getUangat(int position){
+        return data.get(position);
+    }
+
     class KeuanganHolder extends RecyclerView.ViewHolder {
 
         private TextView txtNama, txtDeskripsi, txtTanggal, txtUang;
@@ -78,33 +79,5 @@ public class PemasukanAdapter extends RecyclerView.Adapter<PemasukanAdapter.Keua
         }
 
     }
-    class KeuanganDiffCallback extends DiffUtil.Callback {
 
-        private final List<Keuangan> oldPosts, newPosts;
-
-        public KeuanganDiffCallback(List<Keuangan> oldPosts, List<Keuangan> newPosts) {
-            this.oldPosts = oldPosts;
-            this.newPosts = newPosts;
-        }
-
-        @Override
-        public int getOldListSize() {
-            return oldPosts.size();
-        }
-
-        @Override
-        public int getNewListSize() {
-            return newPosts.size();
-        }
-
-        @Override
-        public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-            return oldPosts.get(oldItemPosition).getId() == newPosts.get(newItemPosition).getId();
-        }
-
-        @Override
-        public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-            return oldPosts.get(oldItemPosition).equals(newPosts.get(newItemPosition));
-        }
-    }
 }

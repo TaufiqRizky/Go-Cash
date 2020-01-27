@@ -21,12 +21,13 @@ public class Activity_Graph extends AppCompatActivity {
         setContentView(R.layout.activity__graph);
 
 
+
         barChart= findViewById(R.id.barchart);
-        buatGrafik(barChart);
+        //buatGrafik(barChart);
 
     }
 
-    public void  buatGrafik(BarChart b){
+    public void  buatGrafik(BarChart b,int x, int y){
         b.setDrawBarShadow(true);
         b.setDrawValueAboveBar(true);
         b.setMaxVisibleValueCount(50);
@@ -37,9 +38,9 @@ public class Activity_Graph extends AppCompatActivity {
 
 
         ArrayList<BarEntry> barEntries = new ArrayList<>();
-        barEntries.add(new BarEntry(1,200000));
+        barEntries.add(new BarEntry(1,x));
         ArrayList<BarEntry> barEntries2 = new ArrayList<>();
-        barEntries2.add(new BarEntry(2,340000));
+        barEntries2.add(new BarEntry(2,y));
 
 
         BarDataSet barDataSet = new BarDataSet(barEntries,"Pemasukan");

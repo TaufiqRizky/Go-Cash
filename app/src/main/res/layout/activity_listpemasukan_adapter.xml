@@ -22,7 +22,7 @@
         android:id="@+id/rcpemasukan"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/note_item" />
+        tools:listitem="@layout/item_card" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnTambah"
@@ -30,7 +30,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="32dp"
+        android:backgroundTint="@color/dark"
         android:src="@drawable/ic_add"
+        android:tint="#ff0000"
+        app:itemIconTint="@color/orange"
+        app:itemTextColor="@color/orange"
         tools:layout_editor_absoluteX="251dp"
         tools:layout_editor_absoluteY="159dp" />
     <!--    <Button-->
