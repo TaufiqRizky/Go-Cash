@@ -4,19 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff9f43"
+    android:background="@color/orange"
     tools:context=".SigninActivity">
 
     <TextView
         android:id="@+id/txtjudul"
-        android:layout_width="211dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="32dp"
-        android:fontFamily="sans-serif"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/averia_gruesa_libre"
         android:foregroundTint="#fff"
-        android:text="GO CA$H"
-        android:textColor="@android:color/white"
-        android:textSize="50sp"
+        android:text="$"
+        android:textColor="@color/dark"
+        android:textSize="120sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,12 +26,14 @@
         android:id="@+id/editText4"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="252dp"
+        android:layout_marginTop="80dp"
         android:ems="10"
+        android:fontFamily="@font/averia_gruesa_libre"
         android:hint="Username"
         android:inputType="textPersonName"
-        android:textColorHint="#576574"
+        android:textColorHint="@color/dark"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtjudul" />
 
@@ -38,40 +41,45 @@
         android:id="@+id/editText3"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
+        android:fontFamily="@font/averia_gruesa_libre"
         android:hint="Password"
         android:inputType="textPassword"
-        android:textColorHint="#576574"
+        android:textColorHint="@color/dark"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText4" />
-
-    <Button
-        android:id="@+id/btnSignIn"
-        android:layout_width="300dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="120dp"
-        android:background="#4834d4"
-        android:onClick="Home"
-        android:text="Sign In"
-        android:textColor="#fff"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
 
     <Button
         android:id="@+id/btnSignUp"
         android:layout_width="300dp"
         android:layout_height="39dp"
-        android:background="#00a8ff"
+        android:background="@drawable/custombutton"
+        android:fontFamily="@font/averia_gruesa_libre"
         android:text="Sign Up"
-        android:textColor="#fff"
+        android:textColor="@color/dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSignIn"
-        app:layout_constraintVertical_bias="0.232" />
+        app:layout_constraintVertical_bias="0.138" />
+
+    <Button
+        android:id="@+id/btnSignIn"
+        android:layout_width="300dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/custombutton"
+        android:fontFamily="@font/averia_gruesa_libre"
+        android:onClick="Home"
+        android:text="Sign In"
+        android:textColor="@color/dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
