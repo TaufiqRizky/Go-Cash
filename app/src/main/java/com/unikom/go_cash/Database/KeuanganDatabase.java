@@ -47,9 +47,9 @@ public abstract class KeuanganDatabase extends RoomDatabase{
 
         @Override
         protected Void doInBackground(Void... voids) {
-            dao.insert(new Keuangan(new Date(100,8,23 ), 20000, "kas", "Taufiq Rizky" ,"Pemasukan"));
-            dao.insert(new Keuangan(new Date(100,8,19 ), 30000, "kas", "Taufiq Rizkyyy" ,"Pemasukan"));
-            dao.insert(new Keuangan(new Date(100,8,18 ), 10000, "kas", "Taufiq Rizkyyy D S" ,"Pengeluaran"));
+            dao.insert(new Keuangan("27/08/2020", 20000, "kas", "Taufiq Rizky" ,"Pemasukan"));
+            dao.insert(new Keuangan("19/08/2019", 30000,"kas", "Taufiq Rizkyyy" ,"Pemasukan"));
+            dao.insert(new Keuangan("20/07/2019", 10000, "kas", "Taufiq Rizkyyy D S" ,"Pengeluaran"));
 //            dao.deleteAll();
             return null;
         }

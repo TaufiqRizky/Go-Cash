@@ -2,6 +2,7 @@ package com.unikom.go_cash;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -53,53 +55,20 @@ public class PengeluaranFragment extends Fragment {
     }
 
     public  void  ShowPopup(View v){
-        Button btnSubmit, btnReset;
-        TextView txtExit,txtJudul;
-        final EditText edttgl, edtuang, edtdesc, edtnama;
-
+        String type = "Pengeluaran";
         addDialog.setContentView(R.layout.fragment_tambah);
-
-        btnSubmit = (Button) addDialog.findViewById(R.id.btnSubmit);
-        btnReset = (Button) addDialog.findViewById(R.id.btnReset);
-
-        edtuang = (EditText) addDialog.findViewById(R.id.edtUang);
-        edtdesc = (EditText) addDialog.findViewById(R.id.edtDesc);
-        edtnama = (EditText) addDialog.findViewById(R.id.edtNama);
-        edttgl = (EditText) addDialog.findViewById(R.id.edtTanggal);
-
-        txtExit = (TextView) addDialog.findViewById(R.id.txtExit);
-        txtJudul = (TextView) addDialog.findViewById(R.id.txtCatatan);
-        txtJudul.setText("PENGELUARAN");
-
-        //btn close
-        txtExit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addDialog.dismiss();
-            }
-        });
-
-        //btn reset
-        btnReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                edtuang.setText("");
-                edtdesc.setText("");
-                edtnama.setText("");
-                edttgl.setText("");
-            }
-        });
-        addDialog.show();
+        TambahActivity a = new TambahActivity();
+        a.popUp(type,addDialog,viewModel);
     }
 
     private void initView(View v) {
         adapter = new PemasukanAdapter();
 
         viewModel = ViewModelProviders.of(getActivity()).get(PemasukanViewModel.class);
-        viewModel.getPemasukan().observe(getActivity(), new Observer<List<Keuangan>>() {
+        viewModel.getPengeluaran().observe(getActivity(), new Observer<List<Keuangan>>() {
             @Override
             public void onChanged(List<Keuangan> keuangans) {
-                Toast.makeText(getActivity(), "test", Toast.LENGTH_SHORT).show();
+                if (keuangans != null)
                 adapter.setData(keuangans);
             }
         });
@@ -108,6 +77,21 @@ public class PengeluaranFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                viewModel.delete(adapter.getUangat(viewHolder.getAdapterPosition()));
+                //Log.d(TAG, "onSwiped: "+adapter.getUangat(viewHolder.getAdapterPosition()));
+                Toast.makeText(getActivity(),"Berhasil Delete", Toast.LENGTH_SHORT).show();
+
+            }
+        }).attachToRecyclerView(recyclerView);
 
 
         // recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));

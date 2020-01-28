@@ -70,11 +70,11 @@ public class PemasukanAdapter extends RecyclerView.Adapter<PemasukanAdapter.Keua
         void setDetails(Keuangan keuangan) {
             Locale localeID = new Locale("in", "ID");
             NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
 
             txtNama.setText(keuangan.getNama());
             txtDeskripsi.setText(keuangan.getDesc());
-            txtTanggal.setText(formatter.format(keuangan.getTgl()));
+            txtTanggal.setText(keuangan.getTgl());
             txtUang.setText(formatRupiah.format((double) keuangan.getUang()));
         }
 

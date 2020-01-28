@@ -33,7 +33,7 @@ public class TambahPengeluaran extends Fragment implements DatePickerDialog.OnDa
 
         View view = inflater.inflate(R.layout.fragment_tambah, container, false);
 
-        btnDatePicker = (ImageButton) view.findViewById(R.id.btnDatePicker);
+        //btnDatePicker = (ImageButton) view.findViewById(R.id.btnDatePicker);
         btnDatePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

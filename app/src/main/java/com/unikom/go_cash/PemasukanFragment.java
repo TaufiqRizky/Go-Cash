@@ -66,56 +66,10 @@ public class PemasukanFragment extends Fragment  {
 
     public void ShowPopup(View v) {
         final String type = "Pemasukan";
-        final String nama = "xxxx";
-
-        Button btnSubmit,btnReset;
-        TextView txtExit,txtJudul;
-        final EditText edttgl, edtuang, edtdesc,  edtnama;
         addDialog.setContentView(R.layout.fragment_tambah);
 
-        btnSubmit = (Button) addDialog.findViewById(R.id.btnSubmit);
-        btnReset = (Button) addDialog.findViewById(R.id.btnReset);
-        edtuang = (EditText) addDialog.findViewById(R.id.edtUang);
-        edtdesc = (EditText) addDialog.findViewById(R.id.edtDesc);
-        edtnama = (EditText) addDialog.findViewById(R.id.edtNama);
-        edttgl = (EditText) addDialog.findViewById(R.id.edtTanggal);
-        txtExit = (TextView) addDialog.findViewById(R.id.txtExit);
-        txtJudul = (TextView) addDialog.findViewById(R.id.txtCatatan);
-        txtJudul.setText("PEMASUKAN");
-
-        //btn close
-        txtExit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addDialog.dismiss();
-            }
-        });
-
-        //btn reset
-        btnReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                edtuang.setText("");
-                edtdesc.setText("");
-                edtnama.setText("");
-                edttgl.setText("");
-            }
-        });
-
-        //btn submit
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Keuangan b = new Keuangan( );
-//                b.setDesc(edtdesc.getText().toString());
-//                b.setNama(nama);
-//                b.setType(type);
-//                b.setTgl(edttgl.getText().toString());
-//                b.setUang(finalValue);
-//                insertData(b);
-            }
-        });
-        addDialog.show();
+        TambahActivity a = new TambahActivity();
+        a.popUp(type,addDialog,viewModel);
     }
 
     private void initView(View v) {
@@ -125,7 +79,7 @@ public class PemasukanFragment extends Fragment  {
         viewModel.getPemasukan().observe(getActivity(), new Observer<List<Keuangan>>() {
             @Override
             public void onChanged(List<Keuangan> keuangans) {
-                Toast.makeText(getActivity(), "test", Toast.LENGTH_SHORT).show();
+                if (keuangans != null)
                 adapter.setData(keuangans);
             }
         });

@@ -1,6 +1,7 @@
 package com.unikom.go_cash.ViewModel;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -32,6 +33,7 @@ public class PemasukanViewModel extends AndroidViewModel {
 
     public  void  insert (Keuangan keuangan){
         repo.insert(keuangan);
+        Log.d("test", "insert: " +keuangan);
     }
 
     public  void  update (Keuangan keuangan){
@@ -71,6 +73,8 @@ public class PemasukanViewModel extends AndroidViewModel {
         this.bln=bln;
         return laporan;
     }
+
+
 
 
 }

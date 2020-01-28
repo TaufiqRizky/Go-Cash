@@ -3,22 +3,17 @@ package com.unikom.go_cash.Entity;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
-
-import com.unikom.go_cash.DateConverter;
 
 import  java.io.Serializable;
-import java.util.Date;
 
 @Entity(tableName = "Keuangan")
-@TypeConverters(DateConverter.class)
 public class Keuangan implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
 
     @ColumnInfo(name = "Tanggal")
-    private Date tgl;
+    private String tgl;
 
     @ColumnInfo(name = "uang")
     private int uang;
@@ -32,7 +27,7 @@ public class Keuangan implements Serializable {
     @ColumnInfo(name = "type")
     private String type;
 
-    public Keuangan( Date tgl, int uang, String desc, String nama, String type) {
+    public Keuangan( String tgl, int uang, String desc, String nama, String type) {
 
         this.tgl = tgl;
         this.uang = uang;
@@ -49,11 +44,11 @@ public class Keuangan implements Serializable {
         this.id = id;
     }
 
-    public Date getTgl() {
+    public String getTgl() {
         return tgl;
     }
 
-    public void setTgl(Date tgl) {
+    public void setTgl(String tgl) {
         this.tgl = tgl;
     }
 
