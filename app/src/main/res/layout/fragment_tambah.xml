@@ -46,7 +46,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/averia_gruesa_libre"
-        android:hint="@string/txt_pengeluaran"
         android:textColor="@color/dark"
         android:textColorHint="@color/dark"
         android:textSize="20sp"
@@ -124,7 +123,7 @@
         android:layout_marginTop="10dp"
         android:ems="10"
         android:fontFamily="@font/averia_gruesa_libre"
-        android:hint="Tanggal"
+        android:hint="Tanggal (DD/MM/YYYY)"
         android:inputType="date"
         android:textColorLink="@color/orange"
         app:layout_constraintEnd_toEndOf="parent"
@@ -146,20 +145,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtTanggal" />
 
-    <ImageButton
-        android:id="@+id/btnDatePicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#00FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/edtTanggal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.792"
-        app:layout_constraintStart_toStartOf="@+id/edtTanggal"
-        app:layout_constraintTop_toTopOf="@+id/edtTanggal"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@android:drawable/ic_menu_my_calendar" />
-
-<!--    <TextView-->
+    <!--    <TextView-->
 <!--        android:id="@+id/tvDateResult"-->
 <!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content"-->

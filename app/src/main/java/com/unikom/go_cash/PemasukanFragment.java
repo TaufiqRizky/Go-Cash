@@ -68,23 +68,37 @@ public class PemasukanFragment extends Fragment  {
         final String type = "Pemasukan";
         final String nama = "xxxx";
 
-        Button btnSubmit;
-        TextView txtExit;
-        final EditText edttgl, edtuang, edtdesc;
+        Button btnSubmit,btnReset;
+        TextView txtExit,txtJudul;
+        final EditText edttgl, edtuang, edtdesc,  edtnama;
         addDialog.setContentView(R.layout.fragment_tambah);
 
         btnSubmit = (Button) addDialog.findViewById(R.id.btnSubmit);
+        btnReset = (Button) addDialog.findViewById(R.id.btnReset);
         edtuang = (EditText) addDialog.findViewById(R.id.edtUang);
         edtdesc = (EditText) addDialog.findViewById(R.id.edtDesc);
-
+        edtnama = (EditText) addDialog.findViewById(R.id.edtNama);
+        edttgl = (EditText) addDialog.findViewById(R.id.edtTanggal);
         txtExit = (TextView) addDialog.findViewById(R.id.txtExit);
-
+        txtJudul = (TextView) addDialog.findViewById(R.id.txtCatatan);
+        txtJudul.setText("PEMASUKAN");
 
         //btn close
         txtExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addDialog.dismiss();
+            }
+        });
+
+        //btn reset
+        btnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edtuang.setText("");
+                edtdesc.setText("");
+                edtnama.setText("");
+                edttgl.setText("");
             }
         });
 
