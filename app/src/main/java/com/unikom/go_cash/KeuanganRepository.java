@@ -25,7 +25,7 @@ public class KeuanganRepository {
         dao=db.keuanganDAO();
         pemasukan= dao.getPemasukan();
         pengeluaran= dao.getPengeluaran();
-        laporan= dao.getlaporan(thn,bln);
+        laporan= dao.getlaporanBlnThn(thn,bln);
         sumPemasukan=dao.SumPemasukan();
         sumPengeluaran=dao.SumPengeluaran();
     }

@@ -119,10 +119,10 @@ public class ReportFragment extends Fragment {
         adapter = new PemasukanAdapter();
 
         viewModel = ViewModelProviders.of(getActivity()).get(PemasukanViewModel.class);
-        viewModel.getLaporan("2000","9").observe(getActivity(), new Observer<List<Keuangan>>() {
+        viewModel.getLaporan(null,null).observe(getActivity(), new Observer<List<Keuangan>>() {
             @Override
             public void onChanged(List<Keuangan> keuangans) {
-
+                Log.d(TAG, "onChanged: " + keuangans);
                 adapter.setData(keuangans);
             }
         });
