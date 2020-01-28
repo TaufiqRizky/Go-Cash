@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.unikom.go_cash.Adapter.PemasukanAdapter;
 import com.unikom.go_cash.Entity.Keuangan;
 
@@ -27,7 +29,6 @@ import java.util.List;
 
 public class PengeluaranFragment extends Fragment {
     Dialog addDialog;
-    private Button btnAdd;
     private RecyclerView rvPengeluaran;
     private PemasukanAdapter adapter;
     private PemasukanViewModel viewModel;
@@ -39,7 +40,7 @@ public class PengeluaranFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_pengeluaran,container, false);
 
         addDialog = new Dialog(getActivity());
-        btnAdd= (Button) view.findViewById(R.id.btnAdd);
+        FloatingActionButton btnAdd = view.findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,7 +53,42 @@ public class PengeluaranFragment extends Fragment {
     }
 
     public  void  ShowPopup(View v){
+        Button btnSubmit, btnReset;
+        TextView txtExit,txtJudul;
+        final EditText edttgl, edtuang, edtdesc, edtnama;
+
         addDialog.setContentView(R.layout.fragment_tambah);
+
+        btnSubmit = (Button) addDialog.findViewById(R.id.btnSubmit);
+        btnReset = (Button) addDialog.findViewById(R.id.btnReset);
+
+        edtuang = (EditText) addDialog.findViewById(R.id.edtUang);
+        edtdesc = (EditText) addDialog.findViewById(R.id.edtDesc);
+        edtnama = (EditText) addDialog.findViewById(R.id.edtNama);
+        edttgl = (EditText) addDialog.findViewById(R.id.edtTanggal);
+
+        txtExit = (TextView) addDialog.findViewById(R.id.txtExit);
+        txtJudul = (TextView) addDialog.findViewById(R.id.txtCatatan);
+        txtJudul.setText("PENGELUARAN");
+
+        //btn close
+        txtExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addDialog.dismiss();
+            }
+        });
+
+        //btn reset
+        btnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edtuang.setText("");
+                edtdesc.setText("");
+                edtnama.setText("");
+                edttgl.setText("");
+            }
+        });
         addDialog.show();
     }
 
