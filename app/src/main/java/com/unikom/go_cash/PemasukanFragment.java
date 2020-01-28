@@ -2,6 +2,7 @@ package com.unikom.go_cash;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -49,14 +50,15 @@ public class PemasukanFragment extends Fragment  {
                              Bundle savedInstanceState) {
 
         final View rootView = inflater.inflate(R.layout.activity_listpemasukan_adapter, container, false);
+        addDialog = new Dialog(getActivity());
 
         FloatingActionButton btnAdd = rootView.findViewById(R.id.btnTambah);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addDialog = new Dialog(getActivity());
-                ShowPopup(v);
+
+                ShowPopup(v,"in",null);
             }
         });
 
@@ -64,12 +66,17 @@ public class PemasukanFragment extends Fragment  {
         return rootView;
     }
 
-    public void ShowPopup(View v) {
+    public void ShowPopup(View v, String tp , String[] dataa) {
         final String type = "Pemasukan";
         addDialog.setContentView(R.layout.fragment_tambah);
 
         TambahActivity a = new TambahActivity();
-        a.popUp(type,addDialog,viewModel);
+        if (tp == "in"){
+            a.popUp(type,addDialog,viewModel);
+        }else{
+            a.popUpEdit(type,addDialog,viewModel,  dataa);
+        }
+
     }
 
     private void initView(View v) {
@@ -105,6 +112,20 @@ public class PemasukanFragment extends Fragment  {
             }
         }).attachToRecyclerView(recyclerView);
 
+        adapter.setOnItemClickListener(new PemasukanAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Keuangan keuangan) {
+                String[] strKeuangan = new String[5];
+                strKeuangan[0]= keuangan.getNama();
+                strKeuangan[1]= keuangan.getTgl();
+                strKeuangan[2]= keuangan.getDesc();
+                strKeuangan[3]= new Integer(keuangan.getUang()).toString();
+                strKeuangan[4]= new Integer(keuangan.getId()).toString();
+                Log.d(TAG, "onItemClick: "+keuangan.getId());
+                ShowPopup(v,"up",strKeuangan);
+
+            }
+        });
 
     }
 

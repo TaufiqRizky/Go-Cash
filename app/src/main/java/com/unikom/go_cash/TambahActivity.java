@@ -25,6 +25,7 @@ public class TambahActivity extends AppCompatActivity {
     EditText edttgl, edtuang, edtdesc,edtnama;
     Dialog dialog;
     String type;
+    int id;
     PemasukanViewModel viewModel;
 
     public  void  init(){
@@ -68,7 +69,48 @@ public class TambahActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveNote();
+                saveNote("in");
+            }
+        });
+
+        //btn reset
+        btnreset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                emptyDialog();
+            }
+        });
+        addDialog.show();
+    }
+
+    public void popUpEdit(String type, Dialog addDialog, PemasukanViewModel v,String[] dataa){
+        dialog=addDialog;
+        this.type=type;
+        this.viewModel=v;
+        Log.d("asasas", "popUp: "+this.type);
+        init();
+        edtnama.setText(dataa[0]);
+        edttgl.setText(dataa[1]);
+        edtdesc.setText(dataa[2]);
+        edtuang.setText(dataa[3]);
+        id=new Integer(dataa[4]);
+        Log.d("tes woii", "popUpEdit: "+id);
+        TextView judul = (TextView) dialog.findViewById(R.id.txtJudulDial) ;
+        judul.setText("EDIT CATATAN");
+
+        //btn close
+        txtExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addDialog.dismiss();
+            }
+        });
+
+        //btn submit
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveNote("up");
             }
         });
 
@@ -83,13 +125,13 @@ public class TambahActivity extends AppCompatActivity {
     }
 
     private  void emptyDialog(){
-        edtuang.setText("");
+        edtnama.setText("");
         edttgl.setText("");
         edtdesc.setText("");
         edtuang.setText("");
     }
 
-    private void saveNote() {
+    private void saveNote(String x) {
         init();
         final String nama = edtnama.getText().toString();
         final String deskripsi = edtdesc.getText().toString();
@@ -102,11 +144,20 @@ public class TambahActivity extends AppCompatActivity {
             return;
         }else{
             final int jml =Integer.parseInt(a);
+            if (x == "in"){
+                viewModel.insert(new Keuangan(tanggal,jml,deskripsi,nama,this.type));
+                emptyDialog();
+                dialog.dismiss();
+                Toast.makeText(dialog.getContext(), "Berhasil Tambah Data", Toast.LENGTH_SHORT).show();
+            }else{
+                Keuangan keuangan =new Keuangan(tanggal,jml,deskripsi,nama,this.type);
+                keuangan.setId(id);
+                viewModel.update(keuangan);
+                emptyDialog();
+                dialog.dismiss();
+                Toast.makeText(dialog.getContext(), "Berhasil Edit Data", Toast.LENGTH_SHORT).show();
+            }
 
-            viewModel.insert(new Keuangan(tanggal,jml,deskripsi,nama,this.type));
-            emptyDialog();
-            dialog.dismiss();
-            Toast.makeText(dialog.getContext(), "Berhasil Tambah Data", Toast.LENGTH_SHORT).show();
         }
 
 

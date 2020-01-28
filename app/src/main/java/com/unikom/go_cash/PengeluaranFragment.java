@@ -46,7 +46,7 @@ public class PengeluaranFragment extends Fragment {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShowPopup(v);
+                ShowPopup(v,"in",null);
             }
         });
 
@@ -54,11 +54,17 @@ public class PengeluaranFragment extends Fragment {
         return view;
     }
 
-    public  void  ShowPopup(View v){
-        String type = "Pengeluaran";
+    public void ShowPopup(View v, String tp , String[] dataa) {
+        final String type = "Pengeluaran";
         addDialog.setContentView(R.layout.fragment_tambah);
+
         TambahActivity a = new TambahActivity();
-        a.popUp(type,addDialog,viewModel);
+        if (tp == "in"){
+            a.popUp(type,addDialog,viewModel);
+        }else{
+            a.popUpEdit(type,addDialog,viewModel,  dataa);
+        }
+
     }
 
     private void initView(View v) {
@@ -92,7 +98,20 @@ public class PengeluaranFragment extends Fragment {
 
             }
         }).attachToRecyclerView(recyclerView);
+        adapter.setOnItemClickListener(new PemasukanAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Keuangan keuangan) {
+                String[] strKeuangan = new String[5];
+                strKeuangan[0]= keuangan.getNama();
+                strKeuangan[1]= keuangan.getTgl();
+                strKeuangan[2]= keuangan.getDesc();
+                strKeuangan[3]= new Integer(keuangan.getUang()).toString();
+                strKeuangan[4]= new Integer(keuangan.getId()).toString();
+                //Log.d(TAG, "onItemClick: "+keuangan.getId());
+                ShowPopup(v,"up",strKeuangan);
 
+            }
+        });
 
         // recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
 

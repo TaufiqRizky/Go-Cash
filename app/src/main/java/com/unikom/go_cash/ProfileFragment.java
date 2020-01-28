@@ -14,6 +14,9 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.unikom.go_cash.ViewModel.PemasukanViewModel;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class ProfileFragment extends Fragment {
     final int[] sumPemasukan = new int[1];
     final int[] sumPengeluaran = new int[1];
@@ -49,9 +52,12 @@ public class ProfileFragment extends Fragment {
                 }
             }
         });
-       String a = new Integer(sumPemasukan[0]).toString();
-       String b = new Integer(sumPengeluaran[0]).toString();
-       String c = new Integer(sumPemasukan[0]-sumPengeluaran[0]).toString();
+        Locale localeID = new Locale("in", "ID");
+        NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
+
+       String a = formatRupiah.format((double) new Integer(sumPemasukan[0])).toString();
+       String b = formatRupiah.format((double) new Integer(sumPengeluaran[0])).toString();
+       String c = formatRupiah.format((double) new Integer(sumPemasukan[0]-sumPengeluaran[0])).toString();
 
         txtPemasukan.setText(a);
         txtPengeluaran.setText(b);

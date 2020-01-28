@@ -12,7 +12,6 @@ import com.unikom.go_cash.Entity.Keuangan;
 import com.unikom.go_cash.R;
 
 import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -21,7 +20,7 @@ public class PemasukanAdapter extends RecyclerView.Adapter<PemasukanAdapter.Keua
 
 
     private List<Keuangan> data = new ArrayList<>();
-
+    private OnItemClickListener listener;
 
 
     @NonNull
@@ -47,11 +46,11 @@ public class PemasukanAdapter extends RecyclerView.Adapter<PemasukanAdapter.Keua
     }
 
     public void setData(List<Keuangan> keuangan) {
-        this.data=keuangan;
+        this.data = keuangan;
         notifyDataSetChanged();
     }
 
-    public  Keuangan getUangat(int position){
+    public Keuangan getUangat(int position) {
         return data.get(position);
     }
 
@@ -65,6 +64,17 @@ public class PemasukanAdapter extends RecyclerView.Adapter<PemasukanAdapter.Keua
             txtDeskripsi = itemView.findViewById(R.id.txtDeskripsi);
             txtTanggal = itemView.findViewById(R.id.txtTanggal);
             txtUang = itemView.findViewById(R.id.txtUang);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.onItemClick(data.get(position));
+                    }
+
+                }
+            });
         }
 
         void setDetails(Keuangan keuangan) {
@@ -78,6 +88,14 @@ public class PemasukanAdapter extends RecyclerView.Adapter<PemasukanAdapter.Keua
             txtUang.setText(formatRupiah.format((double) keuangan.getUang()));
         }
 
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Keuangan keuangan);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 
 }
