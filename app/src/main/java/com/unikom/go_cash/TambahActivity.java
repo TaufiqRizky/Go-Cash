@@ -145,7 +145,7 @@ public class TambahActivity extends AppCompatActivity {
 
         if (nama.trim().isEmpty() || deskripsi.trim().isEmpty() || tanggal.trim().isEmpty() || a.trim().isEmpty()) {
             Toast.makeText(dialog.getContext(), "Pastikan Semua Data Terisi Dengan Benar!", Toast.LENGTH_SHORT).show();
-            return;
+
         }else{
             final int jml =Integer.parseInt(a);
             if (x == "in"){

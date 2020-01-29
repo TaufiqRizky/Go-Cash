@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.unikom.go_cash.Model.User;
 import com.unikom.go_cash.ViewModel.PemasukanViewModel;
 
 import java.text.NumberFormat;
@@ -21,7 +22,8 @@ public class ProfileFragment extends Fragment {
     final int[] sumPemasukan = new int[1];
     final int[] sumPengeluaran = new int[1];
     private PemasukanViewModel viewModel;
-    TextView txtPemasukan,txtPengeluaran,txtSaldo;
+    TextView txtPemasukan,txtPengeluaran,txtSaldo,txtnama;
+    private User user;
 
     @Nullable
     @Override
@@ -31,6 +33,10 @@ public class ProfileFragment extends Fragment {
         txtPengeluaran = view.findViewById(R.id.txtPengeluaran);
         txtSaldo = view.findViewById(R.id.txtSaldo);
         viewModel = ViewModelProviders.of(getActivity()).get(PemasukanViewModel.class);
+        txtnama=view.findViewById(R.id.txtUsernamee);
+
+
+
 
         viewModel.getSumPengeluaran().observe(getActivity(), new Observer<Integer>() {
             @Override

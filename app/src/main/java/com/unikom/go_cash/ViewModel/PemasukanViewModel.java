@@ -10,6 +10,7 @@ import androidx.lifecycle.LiveData;
 import com.unikom.go_cash.Database.keuanganDAO;
 import com.unikom.go_cash.Entity.Keuangan;
 import com.unikom.go_cash.KeuanganRepository;
+import com.unikom.go_cash.Model.User;
 
 import java.util.List;
 
@@ -18,8 +19,9 @@ public class PemasukanViewModel extends AndroidViewModel {
     private  LiveData<List<Keuangan>> pemasukan,pengeluaran,laporan;
     private LiveData<Integer> sumPemasukan,sumPengeluaran;
     private LiveData<String []> tahun;
-    public  String thn,bln;
+    public  String thn,bln,us,ps;
     public  keuanganDAO dao ;
+    public User userr;
 
 
     public PemasukanViewModel(@NonNull Application application) {
@@ -27,15 +29,19 @@ public class PemasukanViewModel extends AndroidViewModel {
         repo = new KeuanganRepository(application);
         pemasukan = repo.getPemasukan();
         pengeluaran = repo.getPengeluaran();
-        laporan = repo.getLaporan(thn,bln);
+        laporan = repo.getLaporan();
         sumPemasukan=repo.getSumPemasukan();
         sumPengeluaran=repo.getSumPengeluaran();
         tahun=repo.getTahun();
+        userr=repo.getUser(us,ps);
     }
 
     public  void  insert (Keuangan keuangan){
         repo.insert(keuangan);
         Log.d("test", "insert: " +keuangan);
+    }
+    public  void  insertUser (User usr){
+        repo.insertUser(usr);
     }
 
     public  void  update (Keuangan keuangan){
@@ -61,6 +67,11 @@ public class PemasukanViewModel extends AndroidViewModel {
     public LiveData<Integer> getSumPengeluaran() {
         return sumPengeluaran;
     }
+    public User getUser(String username,String pass){
+        us=username;
+        ps=pass;
+        return userr;
+    }
 
     public  LiveData<List<Keuangan>> getPemasukan(){
         return pemasukan;
@@ -73,11 +84,11 @@ public class PemasukanViewModel extends AndroidViewModel {
         return tahun;
     }
 
-    public  LiveData<List<Keuangan>> getLaporan(String thn, String bln){
-        this.thn=thn;
-        this.bln=bln;
+    public  LiveData<List<Keuangan>> getLaporan(){
+
         return laporan;
     }
+
 
 
 

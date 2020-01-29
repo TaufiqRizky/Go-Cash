@@ -18,9 +18,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.unikom.go_cash.Model.User;
 
 public class MainActivity extends AppCompatActivity {
     //private DrawerLayout drawer;
+    User user;
 
 
     @Override
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, new ProfileFragment());
         transaction.commit();
+
 
 
 

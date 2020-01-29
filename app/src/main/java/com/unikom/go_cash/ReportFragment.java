@@ -48,26 +48,25 @@ public class ReportFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_report,container,false);
         initView(view);
-        Spinner TahunSpin= view.findViewById(R.id.SpinTahun);
-        viewModel.getTahun().observe(Objects.requireNonNull(getActivity()), new Observer<String[]>() {
-            @Override
-            public void onChanged(String[] strings) {
+//        Spinner TahunSpin= view.findViewById(R.id.SpinTahun);
+//        viewModel.getTahun().observe(Objects.requireNonNull(getActivity()), new Observer<String[]>() {
+//            @Override
+//            public void onChanged(String[] strings) {
+//
+//                    ArrayAdapter<String> adapterThn =new ArrayAdapter<String>(Objects.requireNonNull(getActivity()),
+//                            android.R.layout.simple_spinner_item,
+//                            strings);
+//                    adapterThn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                    TahunSpin.setAdapter(adapterThn);
+//
+//            }
+//        });
 
-                    ArrayAdapter<String> adapterThn =new ArrayAdapter<String>(Objects.requireNonNull(getActivity()),
-                            android.R.layout.simple_spinner_item,
-                            strings);
-                    adapterThn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    TahunSpin.setAdapter(adapterThn);
 
-
-            }
-        });
-
-
-        Spinner BulanSpin= view.findViewById(R.id.SpinBulan);
-        ArrayAdapter<CharSequence> adapterBln = ArrayAdapter.createFromResource(getActivity() ,R.array.Bulan, android.R.layout.simple_spinner_item);
-        adapterBln.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        BulanSpin.setAdapter(adapterBln);
+//        Spinner BulanSpin= view.findViewById(R.id.SpinBulan);
+//        ArrayAdapter<CharSequence> adapterBln = ArrayAdapter.createFromResource(getActivity() ,R.array.Bulan, android.R.layout.simple_spinner_item);
+//        adapterBln.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        BulanSpin.setAdapter(adapterBln);
 
         grafikDialog = new Dialog(getActivity());
         btnGrafik = (Button) view.findViewById(R.id.btnGrafik);
@@ -128,7 +127,7 @@ public class ReportFragment extends Fragment {
         adapter = new PemasukanAdapter();
 
         viewModel = ViewModelProviders.of(getActivity()).get(PemasukanViewModel.class);
-        viewModel.getLaporan(null,null).observe(getActivity(), new Observer<List<Keuangan>>() {
+        viewModel.getLaporan().observe(getActivity(), new Observer<List<Keuangan>>() {
             @Override
             public void onChanged(List<Keuangan> keuangans) {
                 Log.d(TAG, "onChanged: " + keuangans);

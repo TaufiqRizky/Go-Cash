@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData;
 import com.unikom.go_cash.Database.KeuanganDatabase;
 import com.unikom.go_cash.Database.keuanganDAO;
 import com.unikom.go_cash.Entity.Keuangan;
+import com.unikom.go_cash.Model.User;
 
 import java.util.List;
 
@@ -19,21 +20,26 @@ public class KeuanganRepository {
     private LiveData<List<Keuangan>> pemasukan,pengeluaran,laporan;
     private LiveData<Integer> sumPemasukan,sumPengeluaran;
     private LiveData<String[]> tahun;
-    public String thn,bln;
+    public String thn,bln,us,ps;
+    private User user;
 
     public  KeuanganRepository(Application application){
         KeuanganDatabase db = KeuanganDatabase.getInstance(application);
         dao=db.keuanganDAO();
         pemasukan= dao.getPemasukan();
         pengeluaran= dao.getPengeluaran();
-        laporan= dao.getlaporanBlnThn(thn,bln);
+        laporan= dao.getlaporan();
         sumPemasukan=dao.SumPemasukan();
         sumPengeluaran=dao.SumPengeluaran();
         tahun = dao.getTahun();
+        //user= dao.getUser(us,ps);
     }
 
     public void insert (Keuangan keuangan){
         new InsertPemasukanAsnycTask(dao).execute(keuangan);
+    }
+    public void insertUser (User usr){
+        new InsertUserAsnycTask(dao).execute(usr);
     }
 
     public void update (Keuangan keuangan){
@@ -65,10 +71,16 @@ public class KeuanganRepository {
         return tahun;
     }
 
-    public LiveData<List<Keuangan>> getLaporan(String thn , String bln) {
-        this.thn=thn;
-        this.bln=bln;
+    public LiveData<List<Keuangan>> getLaporan() {
+
         return laporan;
+    }
+
+    public User getUser(String usname, String pass){
+        us=usname;
+        ps=pass;
+        Log.d(TAG, "getUser: "+usname+pass);
+        return user;
     }
 
     private  static class  InsertPemasukanAsnycTask extends AsyncTask<Keuangan,Void,Void>{
@@ -81,6 +93,20 @@ public class KeuanganRepository {
         @Override
         protected Void doInBackground(Keuangan... keuangans) {
             dao.insert(keuangans[0]);
+            return null;
+        }
+    }
+
+    private  static class  InsertUserAsnycTask extends AsyncTask<User,Void,Void>{
+        private  keuanganDAO dao;
+
+        private InsertUserAsnycTask(keuanganDAO dao){
+            this.dao=dao;
+        }
+
+        @Override
+        protected Void doInBackground(User... usr) {
+            dao.insertUser(usr[0]);
             return null;
         }
     }

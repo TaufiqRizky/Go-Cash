@@ -8,13 +8,19 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.unikom.go_cash.Entity.Keuangan;
+import com.unikom.go_cash.Model.User;
 
 import java.util.List;
 
 @Dao
 public interface keuanganDAO {
+    @Query("SELECT * FROM User where username in (:us) and password in (:pass)")
+    User getUser(String us, String pass);
     @Insert
     void insert(Keuangan keuangan);
+
+    @Insert
+    void insertUser(User user);
 
     @Update
     void update(Keuangan keuangan);

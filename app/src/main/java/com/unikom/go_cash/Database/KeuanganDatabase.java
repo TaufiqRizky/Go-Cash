@@ -10,10 +10,11 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import  com.unikom.go_cash.Entity.Keuangan;
+import com.unikom.go_cash.Model.User;
 
 import java.util.Date;
 
-@Database(entities = {Keuangan.class}, version = 1, exportSchema = false)
+@Database(entities = {Keuangan.class, User.class}, version = 3, exportSchema = false)
 public abstract class KeuanganDatabase extends RoomDatabase{
     private static KeuanganDatabase instance;
     public abstract keuanganDAO keuanganDAO();
@@ -47,9 +48,9 @@ public abstract class KeuanganDatabase extends RoomDatabase{
 
         @Override
         protected Void doInBackground(Void... voids) {
-            dao.insert(new Keuangan("27/08/2020", 20000, "kas", "Taufiq Rizky" ,"Pemasukan"));
-            dao.insert(new Keuangan("19/08/2019", 30000,"kas", "Taufiq Rizkyyy" ,"Pemasukan"));
-            dao.insert(new Keuangan("20/07/2019", 10000, "kas", "Taufiq Rizkyyy D S" ,"Pengeluaran"));
+//            dao.insert(new Keuangan("27/08/2020", 20000, "kas", "Taufiq Rizky" ,"Pemasukan"));
+//            dao.insert(new Keuangan("19/08/2019", 30000,"kas", "Taufiq Rizkyyy" ,"Pemasukan"));
+//            dao.insert(new Keuangan("20/07/2019", 10000, "kas", "Taufiq Rizkyyy D S" ,"Pengeluaran"));
 //            dao.deleteAll();
             return null;
         }

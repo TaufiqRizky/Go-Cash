@@ -13,8 +13,8 @@ import com.unikom.go_cash.Model.User;
 
 @Dao
 public interface UserDao {
-    @Query("SELECT * FROM User where email= :mail and password= :password")
-    User getUser(String mail, String password);
+    @Query("SELECT * FROM User where username in (:us) and password= :password")
+    User getUser(String us, String password);
 
     @Insert
     void insert(User user);
