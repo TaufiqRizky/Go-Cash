@@ -49,6 +49,9 @@ public interface keuanganDAO {
     @Query("SELECT * FROM Keuangan where substr(Tanggal,7,10) = :thn")
     LiveData<List<Keuangan>> getlaporanThn(String thn );
 
+    @Query("SELECT substr(Tanggal,7,10) as Tahun FROM Keuangan group by  substr(Tanggal,7,10)")
+    LiveData<String[]> getTahun();
+
     @Query("SELECT * FROM Keuangan ")
     LiveData<List<Keuangan>> getlaporan();
 }

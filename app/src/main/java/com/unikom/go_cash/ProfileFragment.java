@@ -40,6 +40,7 @@ public class ProfileFragment extends Fragment {
                 }else {
                     sumPengeluaran[0] = integer;
                 }
+                setText();
             }
         });
         viewModel.getSumPemasukan().observe(getActivity(), new Observer<Integer>() {
@@ -50,19 +51,24 @@ public class ProfileFragment extends Fragment {
                 }else {
                     sumPemasukan[0] = integer;
                 }
+                setText();
             }
         });
+
+
+        return view;
+    }
+
+    public void setText(){
         Locale localeID = new Locale("in", "ID");
         NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
 
-       String a = formatRupiah.format((double) new Integer(sumPemasukan[0])).toString();
-       String b = formatRupiah.format((double) new Integer(sumPengeluaran[0])).toString();
-       String c = formatRupiah.format((double) new Integer(sumPemasukan[0]-sumPengeluaran[0])).toString();
+        String a = formatRupiah.format((double) new Integer(sumPemasukan[0]));
+        String b = formatRupiah.format((double) new Integer(sumPengeluaran[0]));
+        String c = formatRupiah.format((double) new Integer(sumPemasukan[0]-sumPengeluaran[0]));
 
         txtPemasukan.setText(a);
         txtPengeluaran.setText(b);
         txtSaldo.setText(c);
-
-        return view;
     }
 }

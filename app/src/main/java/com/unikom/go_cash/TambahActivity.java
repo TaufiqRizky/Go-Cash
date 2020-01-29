@@ -29,14 +29,10 @@ public class TambahActivity extends AppCompatActivity {
     PemasukanViewModel viewModel;
 
     public  void  init(){
-        Calendar calendar;
-        SimpleDateFormat dateFormat;
-        String date;
 
 
-        calendar = Calendar.getInstance();
-        dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        date = dateFormat.format(calendar.getTime());
+
+
 
 
         btnSubmit = (Button) dialog.findViewById(R.id.btnSubmit);
@@ -48,7 +44,7 @@ public class TambahActivity extends AppCompatActivity {
         txtExit = (TextView) dialog.findViewById(R.id.txtExit);
         txtjdl = (TextView) dialog.findViewById(R.id.txtCatatan);
         txtjdl.setText(this.type.toUpperCase());
-        edttgl.setText(date);
+
     }
     public void popUp(String type, Dialog addDialog, PemasukanViewModel v){
         dialog=addDialog;
@@ -56,6 +52,13 @@ public class TambahActivity extends AppCompatActivity {
         this.viewModel=v;
         Log.d("asasas", "popUp: "+this.type);
         init();
+
+        Calendar calendar;
+        SimpleDateFormat dateFormat;
+        String date;
+        calendar = Calendar.getInstance();
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        date = dateFormat.format(calendar.getTime());
 
         //btn close
         txtExit.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +83,7 @@ public class TambahActivity extends AppCompatActivity {
                 emptyDialog();
             }
         });
+        edttgl.setText(date);
         addDialog.show();
     }
 
@@ -153,6 +157,7 @@ public class TambahActivity extends AppCompatActivity {
                 Keuangan keuangan =new Keuangan(tanggal,jml,deskripsi,nama,this.type);
                 keuangan.setId(id);
                 viewModel.update(keuangan);
+                Log.d("Coba", "edit: " + tanggal);
                 emptyDialog();
                 dialog.dismiss();
                 Toast.makeText(dialog.getContext(), "Berhasil Edit Data", Toast.LENGTH_SHORT).show();

@@ -29,6 +29,7 @@ import com.unikom.go_cash.ViewModel.PemasukanViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 import static com.unikom.go_cash.R.layout.activity__graph;
@@ -46,19 +47,27 @@ public class ReportFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_report,container,false);
-
+        initView(view);
         Spinner TahunSpin= view.findViewById(R.id.SpinTahun);
-        ArrayAdapter<CharSequence> adapterThn = ArrayAdapter.createFromResource(getActivity() ,R.array.Tahun, android.R.layout.simple_spinner_item);
-        adapterThn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        TahunSpin.setAdapter(adapterThn);
+        viewModel.getTahun().observe(Objects.requireNonNull(getActivity()), new Observer<String[]>() {
+            @Override
+            public void onChanged(String[] strings) {
+
+                    ArrayAdapter<String> adapterThn =new ArrayAdapter<String>(Objects.requireNonNull(getActivity()),
+                            android.R.layout.simple_spinner_item,
+                            strings);
+                    adapterThn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    TahunSpin.setAdapter(adapterThn);
+
+
+            }
+        });
+
 
         Spinner BulanSpin= view.findViewById(R.id.SpinBulan);
         ArrayAdapter<CharSequence> adapterBln = ArrayAdapter.createFromResource(getActivity() ,R.array.Bulan, android.R.layout.simple_spinner_item);
         adapterBln.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         BulanSpin.setAdapter(adapterBln);
-
-
-
 
         grafikDialog = new Dialog(getActivity());
         btnGrafik = (Button) view.findViewById(R.id.btnGrafik);
@@ -69,7 +78,7 @@ public class ReportFragment extends Fragment {
             }
         });
 
-        initView(view);
+
 
         viewModel.getSumPengeluaran().observe(getActivity(), new Observer<Integer>() {
             @Override
